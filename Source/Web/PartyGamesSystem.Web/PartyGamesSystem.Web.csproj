@@ -237,6 +237,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\PartyGamesSystem.Data.Contracts\PartyGamesSystem.Data.Contracts.csproj">
+      <Project>{ae1b0614-3ade-44fd-8863-0394eef14589}</Project>
+      <Name>PartyGamesSystem.Data.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\PartyGamesSystem.Data.Models\PartyGamesSystem.Data.Models.csproj">
       <Project>{238f7b44-0556-49de-87d3-ab125892101f}</Project>
       <Name>PartyGamesSystem.Data.Models</Name>

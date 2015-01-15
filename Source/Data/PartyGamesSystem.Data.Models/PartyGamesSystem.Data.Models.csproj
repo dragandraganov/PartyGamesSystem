@@ -59,6 +59,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PartyGamesSystem.Data.Contracts\PartyGamesSystem.Data.Contracts.csproj">
+      <Project>{ae1b0614-3ade-44fd-8863-0394eef14589}</Project>
+      <Name>PartyGamesSystem.Data.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
