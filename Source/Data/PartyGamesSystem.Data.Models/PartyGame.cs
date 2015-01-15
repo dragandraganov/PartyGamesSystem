@@ -16,7 +16,7 @@ namespace PartyGamesSystem.Data.Models
         [Required]
         public string Description { get; set; }
 
-        public string[] NecessaryItems { get; set; }
+        public string NecessaryItems { get; set; }
 
         public int? MinPlayingPeople { get; set; }
 

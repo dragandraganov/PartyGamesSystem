@@ -8,9 +8,9 @@
         </div>
         <div class="col-md-8">
             <div>Category: @Model.CategoryName</div>
-            <div>Necessery Items: @Model.ListOfNecessaryItems</div>
+            <div>Necessery Items: @Model.NecessaryItems</div>
             <div>Suitable for: @Model.MinPlayingPeople - @Model.MaxPlayingPeople people</div>
-            <div>Description: @Model.Description.Length>200?@Model.Description.Substring(0,200):@Model.Description</div>
+            <div>Description: @(@Model.Description.Length>200?@Model.Description.Substring(0,200):@Model.Description)</div>
         </div>
     </div>
 </div>

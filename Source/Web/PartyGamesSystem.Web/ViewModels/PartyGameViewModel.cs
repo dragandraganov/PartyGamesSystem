@@ -4,6 +4,7 @@ using PartyGamesSystem.Web.Infrastructure.Mapping;
 using System;
 using System.Linq;
 using AutoMapper.QueryableExtensions;
+using System.Data.Entity.SqlServer;
 
 namespace PartyGamesSystem.Web.ViewModels
 {
@@ -15,7 +16,7 @@ namespace PartyGamesSystem.Web.ViewModels
 
         public string Description { get; set; }
 
-        public string ListOfNecessaryItems { get; set; }
+        public string NecessaryItems { get; set; }
 
         public int? MinPlayingPeople { get; set; }
 
@@ -29,7 +30,6 @@ namespace PartyGamesSystem.Web.ViewModels
         {
             configuration.CreateMap<PartyGame, PartyGameViewModel>()
                 .ForMember(m => m.CategoryName, opt => opt.MapFrom(t => t.Category.Name))
-                .ForMember(m => m.ListOfNecessaryItems, opt => opt.MapFrom(t => String.Join(", ",t.NecessaryItems.AsEnumerable())))
                 .ReverseMap();
         }
     }
