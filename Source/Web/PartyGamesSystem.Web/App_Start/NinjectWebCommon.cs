@@ -66,7 +66,7 @@ namespace PartyGamesSystem.Web.App_Start
         {
             kernel.Bind<DbContext>().To<PartyGamesSystemDbContext>();
             kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
-            kernel.Bind(typeof(IDeletableEntityRepository<>)).To(typeof(IDeletableEntityRepository<>));
+            kernel.Bind(typeof(IDeletableEntityRepository<>)).To(typeof(DeletableEntityRepository<>));
         }        
     }
 }

@@ -11,11 +11,11 @@ namespace PartyGamesSystem.Web.ViewModels
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string Title { get; set; }
 
         public string Description { get; set; }
 
-        public string[] NecessaryItems { get; set; }
+        public string ListOfNecessaryItems { get; set; }
 
         public int? MinPlayingPeople { get; set; }
 
@@ -29,6 +29,7 @@ namespace PartyGamesSystem.Web.ViewModels
         {
             configuration.CreateMap<PartyGame, PartyGameViewModel>()
                 .ForMember(m => m.CategoryName, opt => opt.MapFrom(t => t.Category.Name))
+                .ForMember(m => m.ListOfNecessaryItems, opt => opt.MapFrom(t => String.Join(", ",t.NecessaryItems.AsEnumerable())))
                 .ReverseMap();
         }
     }

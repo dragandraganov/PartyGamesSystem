@@ -1,7 +1,12 @@
-﻿
+﻿@using PartyGamesSystem.Web.ViewModels
+@model IEnumerable<PartyGameViewModel>
+
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+@foreach (var game in Model)
+{
+    @Html.Partial("_PartyGameSingleView", game)
+}
 
