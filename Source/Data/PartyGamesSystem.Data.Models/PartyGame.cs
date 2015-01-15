@@ -10,7 +10,25 @@ namespace PartyGamesSystem.Data.Models
         [Key]
         public int Id { get; set; }
 
+        [Required]
         public string Name { get; set; }
+
+        [Required]
+        public string Description { get; set; }
+
+        public string[] NecessaryItems { get; set; }
+
+        public int? MinPlayingPeople { get; set; }
+
+        public int? MaxPlayingPeople { get; set; }
+
+        public int? ImageId { get; set; }
+
+        public virtual Image Image { get; set; }
+
+        public int? CategoryId { get; set; }
+
+        public virtual Category Category { get; set; }
 
         public DateTime CreatedOn {get;set;}
 
