@@ -10,6 +10,11 @@ namespace PartyGamesSystem.Data.Models
 {
     public class User : IdentityUser, IAuditInfo, IDeletableEntity
     {
+        public User()
+        {
+            this.CreatedOn = DateTime.Now;
+        }
+
         public DateTime CreatedOn { get; set; }
 
         public bool PreserveCreatedOn { get; set; }

@@ -1,11 +1,12 @@
 namespace PartyGamesSystem.Data.Migrations
 {
+    using PartyGamesSystem.Data.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<PartyGamesSystem.Data.PartyGamesSystemDbContext>
+    public sealed class Configuration : DbMigrationsConfiguration<PartyGamesSystemDbContext>
     {
         public Configuration()
         {
@@ -14,7 +15,7 @@ namespace PartyGamesSystem.Data.Migrations
             this.AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(PartyGamesSystem.Data.PartyGamesSystemDbContext context)
+        protected override void Seed(PartyGamesSystemDbContext context)
         {
         }
     }

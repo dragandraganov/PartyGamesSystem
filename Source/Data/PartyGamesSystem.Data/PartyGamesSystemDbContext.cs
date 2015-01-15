@@ -16,6 +16,8 @@ namespace PartyGamesSystem.Data
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<PartyGamesSystemDbContext, Configuration>());
         }
 
+        public IDbSet<PartyGame> PartyGames { get; set; }
+
         public static PartyGamesSystemDbContext Create()
         {
             return new PartyGamesSystemDbContext();
@@ -32,6 +34,11 @@ namespace PartyGamesSystem.Data
         private void ApplyAuditInfoRules()
         {
             // Approach via @julielerman: http://bit.ly/123661P
+            var entries= this.ChangeTracker.Entries()
+                    .Where(
+                        e =>
+                        e.Entity is IAuditInfo && ((e.State == EntityState.Added) || (e.State == EntityState.Modified)));
+            
             foreach (var entry in
                 this.ChangeTracker.Entries()
                     .Where(
@@ -45,6 +52,7 @@ namespace PartyGamesSystem.Data
                     if (!entity.PreserveCreatedOn)
                     {
                         entity.CreatedOn = DateTime.Now;
+                        entity.PreserveCreatedOn = true;
                     }
                 }
                 else
