@@ -5,6 +5,8 @@ using System;
 using System.Linq;
 using AutoMapper.QueryableExtensions;
 using System.Data.Entity.SqlServer;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace PartyGamesSystem.Web.ViewModels
 {
@@ -24,6 +26,7 @@ namespace PartyGamesSystem.Web.ViewModels
 
         public int? ImageId { get; set; }
 
+        [DisplayName("Category")]
         public string CategoryName { get; set; }
 
         public void CreateMappings(IConfiguration configuration)
