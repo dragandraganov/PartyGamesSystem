@@ -8,7 +8,7 @@ using PartyGamesSystem.Web.Areas.Administration.AdminViewModels;
 
 namespace PartyGamesSystem.Web.Areas.Administration.Controllers
 {
-    
+
     public class AdminPartyGamesController : AdminController
     {
         public AdminPartyGamesController(IPartyGamesSystemData data)
@@ -28,6 +28,14 @@ namespace PartyGamesSystem.Web.Areas.Administration.Controllers
         public ActionResult Edit(int id)
         {
             var existingPartyGame = Mapper.Map<AdminPartyGameViewModel>(this.Data.PartyGames.GetById(id));
+            var allCategories = this.Data.Categories
+                .All()
+                .Select(c => new SelectListItem
+                {
+                    Value = c.Id.ToString(),
+                    Text = c.Name
+                });
+            existingPartyGame.Categories = new SelectList(allCategories, "Value", "Text");
             return View(existingPartyGame);
         }
     }
