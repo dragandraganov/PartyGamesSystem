@@ -1,11 +1,23 @@
 ﻿@using PartyGamesSystem.Web.Areas.Administration.AdminViewModels
+@using GridMvc.Html
 @model IEnumerable<AdminPartyGameViewModel>
 
 @{
     ViewBag.Title = "Index";
 }
 
-@foreach (var game in Model)
+@Html.Grid(Model).Columns(columns =>
 {
-    @Html.Partial("_PartyGameSingleView", game)
-}
+    columns.Add(model => model.Id)
+        .Sanitized(false)
+        .Encoded(false)
+        .Titled(string.Empty)
+        .RenderValueAs(o => Html.ActionLink("Edit", "Edit", "AdminPartyGames", new { Id = o.Id }, new { @class="btn btn-primary"}).ToHtmlString());
+    columns.Add(model => model.CategoryName).Titled("Category");
+    columns.Add(model => model.Title);
+    columns.Add(model => model.Description);
+    columns.Add(model => model.NecessaryItems);
+    columns.Add(model => model.MinPlayingPeople);
+    columns.Add(model => model.MaxPlayingPeople);
+
+}).Filterable(true).Sortable(true).Selectable(false)

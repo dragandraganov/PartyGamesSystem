@@ -4,6 +4,7 @@ using AutoMapper;
 using PartyGamesSystem.Web.Infrastructure.Mapping;
 using PartyGamesSystem.Data.Models;
 using System.ComponentModel;
+using GridMvc.DataAnnotations;
 
 namespace PartyGamesSystem.Web.Areas.Administration.AdminViewModels
 {
@@ -24,7 +25,7 @@ namespace PartyGamesSystem.Web.Areas.Administration.AdminViewModels
         //TODO implement Image property of Model
         //public virtual Image Image { get; set; }
 
-        [DisplayName("Category")]
+        [GridColumn(Title = "Category")]
         public string CategoryName { get; set; }
 
         public DateTime CreatedOn { get; set; }

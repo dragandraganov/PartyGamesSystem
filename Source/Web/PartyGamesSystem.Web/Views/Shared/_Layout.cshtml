@@ -4,9 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Funny Party Games - @ViewBag.Title</title>
+    @{
+        //TODO:correct bundles
+    }
+    <link href="~/Content/Gridmvc.css" rel="stylesheet"/>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @RenderSection("styles", required: false)
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -47,6 +51,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/gridmvc")
     @RenderSection("scripts", required: false)
 </body>
 </html>
