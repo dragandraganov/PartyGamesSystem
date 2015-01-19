@@ -1,0 +1,11 @@
+﻿@using PartyGamesSystem.Web.Areas.Administration.AdminViewModels
+@model IEnumerable<AdminPartyGameViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@foreach (var game in Model)
+{
+    @Html.Partial("_PartyGameSingleView", game)
+}

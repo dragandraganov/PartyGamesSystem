@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using PartyGamesSystem.Data.Models;
 using PartyGamesSystem.Data.Contracts.Repository;
+using PartyGamesSystem.Data.Contracts.Models;
 
 namespace PartyGamesSystem.Data
 {
@@ -26,7 +27,7 @@ namespace PartyGamesSystem.Data
             }
         }
 
-        public IRepository<PartyGame> PartyGames
+        public IDeletableEntityRepository<PartyGame> PartyGames
         {
             get
             {
@@ -35,7 +36,7 @@ namespace PartyGamesSystem.Data
             }
         }
 
-        public IRepository<Category> Categories
+        public IDeletableEntityRepository<Category> Categories
         {
             get
             {
@@ -44,7 +45,7 @@ namespace PartyGamesSystem.Data
             }
         }
 
-        public IRepository<Image> Images
+        public IDeletableEntityRepository<Image> Images
         {
             get
             {
@@ -52,7 +53,7 @@ namespace PartyGamesSystem.Data
             }
         }
 
-        public IRepository<User> Users
+        public IDeletableEntityRepository<User> Users
         {
             get
             {
@@ -81,16 +82,16 @@ namespace PartyGamesSystem.Data
             return this.context.SaveChanges();
         }
 
-        private IRepository<T> GetRepository<T>() where T : class
+        private IDeletableEntityRepository<T> GetRepository<T>() where T : class, IDeletableEntity
         {
             if (!this.repositories.ContainsKey(typeof(T)))
             {
-                var type = typeof(GenericRepository<T>);
+                var type = typeof(DeletableEntityRepository<T>);
 
                 this.repositories.Add(typeof(T), Activator.CreateInstance(type, this.context));
             }
 
-            return (IRepository<T>)this.repositories[typeof(T)];
+            return (IDeletableEntityRepository<T>)this.repositories[typeof(T)];
         }
     }
 }

@@ -9,13 +9,13 @@
     {
         DbContext Context { get; }
 
-        IRepository<PartyGame> PartyGames { get; }
+        IDeletableEntityRepository<PartyGame> PartyGames { get; }
 
-        IRepository<Category> Categories { get; }
+        IDeletableEntityRepository<Category> Categories { get; }
 
-        IRepository<Image> Images { get; }
+        IDeletableEntityRepository<Image> Images { get; }
 
-        IRepository<User> Users { get; }
+        IDeletableEntityRepository<User> Users { get; }
 
         void Dispose();
 

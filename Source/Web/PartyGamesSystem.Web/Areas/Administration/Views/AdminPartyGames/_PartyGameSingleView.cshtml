@@ -1,0 +1,16 @@
+﻿@using PartyGamesSystem.Web.Areas.Administration.AdminViewModels
+@model AdminPartyGameViewModel
+<div class="panel panel-body">
+    <div class="text-center">@Model.Title</div>
+    <div class="row">
+        <div class="col-md-4">
+            <img class="img-responsive" alt="no-image"/>
+        </div>
+        <div class="col-md-8">
+            <div>Category: @Model.CategoryName</div>
+            <div>Necessery Items: @Model.NecessaryItems</div>
+            <div>Suitable for: @Model.MinPlayingPeople - @Model.MaxPlayingPeople people</div>
+            <div>Description: @(@Model.Description.Length>200?@Model.Description.Substring(0,200):@Model.Description)</div>
+        </div>
+    </div>
+</div>

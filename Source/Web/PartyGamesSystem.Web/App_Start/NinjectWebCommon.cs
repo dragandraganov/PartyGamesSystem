@@ -65,6 +65,7 @@ namespace PartyGamesSystem.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<DbContext>().To<PartyGamesSystemDbContext>();
+            kernel.Bind<IPartyGamesSystemData>().To<PartyGamesSystemData>();
             kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
             kernel.Bind(typeof(IDeletableEntityRepository<>)).To(typeof(DeletableEntityRepository<>));
         }        

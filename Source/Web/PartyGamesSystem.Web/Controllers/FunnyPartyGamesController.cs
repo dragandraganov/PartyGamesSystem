@@ -1,28 +1,23 @@
-﻿using PartyGamesSystem.Data.Contracts.Repository;
-using PartyGamesSystem.Data.Models;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using AutoMapper.QueryableExtensions;
 using PartyGamesSystem.Web.ViewModels;
+using PartyGamesSystem.Data;
 
 namespace PartyGamesSystem.Web.Controllers
 {
-    public class FunnyPartyGamesController : Controller
+    public class FunnyPartyGamesController : BaseController
     {
-        private readonly IDeletableEntityRepository<PartyGame> partyGames;
-
-        public FunnyPartyGamesController(IDeletableEntityRepository<PartyGame> partyGames)
+        public FunnyPartyGamesController(IPartyGamesSystemData data)
+            : base(data)
         {
-            this.partyGames = partyGames;
         }
 
         // GET: PartyGames
         public ActionResult Index()
         {
-            var allPartyGames = this.partyGames.All().Project().To<PartyGameViewModel>();
+            var allPartyGames = this.Data.PartyGames.All().Project().To<PartyGameViewModel>();
             return View(allPartyGames);
         }
     }
