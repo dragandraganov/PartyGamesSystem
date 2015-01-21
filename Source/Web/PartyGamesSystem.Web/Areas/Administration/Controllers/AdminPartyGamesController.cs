@@ -50,6 +50,7 @@ namespace PartyGamesSystem.Web.Areas.Administration.Controllers
             if (partyGame != null && ModelState.IsValid)
             {
                 var newPartyGame = Mapper.Map<PartyGame>(partyGame);
+                newPartyGame.Author = this.UserProfile;
                 if (partyGame.UploadedImage != null)
                 {
                     using (var memory = new MemoryStream())

@@ -16,12 +16,13 @@
         .Titled(string.Empty)
         .RenderValueAs(model => CheckIfDeletedForEdit(model) )
         .Filterable(false).Sortable(false);
+    columns.Add(model => model.AuthorName).Titled("Author").Filterable(true).Sortable(true);
     columns.Add(model => model.CategoryName).Titled("Category").Filterable(true).Sortable(true);
     columns.Add(model => model.Title).Filterable(true).Sortable(true);
     columns.Add(model => model.Description).Filterable(true).Sortable(true);
-    columns.Add(model => model.NecessaryItems).Filterable(true).Sortable(true);
-    columns.Add(model => model.MinPlayingPeople).Filterable(true).Sortable(true);
-    columns.Add(model => model.MaxPlayingPeople).Filterable(true).Sortable(true);
+    columns.Add(model => model.NecessaryItems).Titled("Items").Filterable(true).Sortable(true);
+    columns.Add(model => model.MinPlayingPeople).Titled("MinPeople").Filterable(true).Sortable(true);
+    columns.Add(model => model.MaxPlayingPeople).Titled("MaxPeople").Filterable(true).Sortable(true);
     columns.Add()
         .Sanitized(false)
         .Encoded(false)
