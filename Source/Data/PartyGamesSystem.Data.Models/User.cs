@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System.Collections.Generic;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using PartyGamesSystem.Data.Contracts.Models;
 using System;
@@ -13,6 +14,7 @@ namespace PartyGamesSystem.Data.Models
         public User()
         {
             this.CreatedOn = DateTime.Now;
+            this.PartyGames = new HashSet<PartyGame>();
         }
 
         public DateTime CreatedOn { get; set; }
@@ -24,6 +26,8 @@ namespace PartyGamesSystem.Data.Models
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
+
+        public virtual ICollection<PartyGame> PartyGames { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {

@@ -22,6 +22,10 @@ namespace PartyGamesSystem.Data.Models
 
         public int? MaxPlayingPeople { get; set; }
 
+        public string AuthorId { get; set; }
+
+        public virtual User Author { get; set; }
+
         public int? ImageId { get; set; }
 
         public virtual Image Image { get; set; }

@@ -6,18 +6,35 @@
     ViewBag.Title = "Index";
 }
 
+@Html.ActionLink("Add new party game", "Add", "AdminPartyGames", null, new { @class="btn btn-success"})
+
 @Html.Grid(Model).Columns(columns =>
 {
-    columns.Add(model => model.Id)
+    columns.Add()
         .Sanitized(false)
         .Encoded(false)
         .Titled(string.Empty)
-        .RenderValueAs(o => Html.ActionLink("Edit", "Edit", "AdminPartyGames", new { Id = o.Id }, new { @class="btn btn-primary"}).ToHtmlString());
-    columns.Add(model => model.CategoryName).Titled("Category");
-    columns.Add(model => model.Title);
-    columns.Add(model => model.Description);
-    columns.Add(model => model.NecessaryItems);
-    columns.Add(model => model.MinPlayingPeople);
-    columns.Add(model => model.MaxPlayingPeople);
+        .RenderValueAs(o => Html.ActionLink("Edit", "Edit", "AdminPartyGames", new { Id = o.Id }, new { @class = "btn btn-primary btn-sm" }).ToHtmlString())
+        .Filterable(false).Sortable(false);
+    columns.Add(model => model.CategoryName).Titled("Category").Filterable(true).Sortable(true);
+    columns.Add(model => model.Title).Filterable(true).Sortable(true);
+    columns.Add(model => model.Description).Filterable(true).Sortable(true);
+    columns.Add(model => model.NecessaryItems).Filterable(true).Sortable(true);
+    columns.Add(model => model.MinPlayingPeople).Filterable(true).Sortable(true);
+    columns.Add(model => model.MaxPlayingPeople).Filterable(true).Sortable(true);
+    columns.Add()
+        .Sanitized(false)
+        .Encoded(false)
+        .Titled(string.Empty)
+        .RenderValueAs(o => Html.ActionLink("Delete", "Delete", "AdminPartyGames", new { Id = o.Id }, new { @class = "btn btn-warning btn-sm" }).ToHtmlString())
+        .Filterable(false)
+        .Sortable(false);
+    columns.Add()
+       .Sanitized(false)
+       .Encoded(false)
+       .Titled(string.Empty)
+       .RenderValueAs(o => Html.ActionLink("Hard Delete", "HardDelete", "AdminPartyGames", new { Id = o.Id }, new { @class = "btn btn-danger btn-xs" }).ToHtmlString())
+       .Filterable(false)
+       .Sortable(false);
 
-}).Filterable(true).Sortable(true).Selectable(false)
+}).Selectable(false)

@@ -2,20 +2,14 @@
 @model AdminPartyGameViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Add";
 }
 
-@using (Html.BeginForm("Edit", "AdminPartyGames", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Add", "AdminPartyGames", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(pg => pg.ImageId)
-    @Html.HiddenFor(pg => pg.CreatedOn)
-    @Html.HiddenFor(pg => pg.ModifiedOn)
-    @Html.HiddenFor(pg => pg.DeletedOn)
-    @Html.HiddenFor(pg => pg.IsDeleted)
-    @Html.HiddenFor(pg => pg.PreserveCreatedOn)
 
-    <h4>Edit party game "@Model.Title"</h4>
+    <h4>Add new party game</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
@@ -55,20 +49,7 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-md-2 control-label" for="currentImage">Current image</label>
-        <div class="col-md-10" id="currentImage">
-            @if (Model.ImageId != null)
-            {
-                <img style="float:left" src="@Url.Action("Image", "AdminPartyGames", new { id = Model.ImageId.Value })" alt="@Model.Title image" class="img-responsive form-control-sm" />
-            }
-            else
-            {
-                <span class="form-control form-control-sm">No image</span>
-            }
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(pg => pg.UploadedImage, "Change image", new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(pg => pg.UploadedImage, "Add image", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(pg => pg.UploadedImage, new { @class = "form-control form-control-sm", @type = "file" })
         </div>
@@ -84,3 +65,5 @@
 @section Scripts{
     @Scripts.Render("~/bundles/jqueryval");
 }
+
+

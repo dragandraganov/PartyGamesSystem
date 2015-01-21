@@ -215,6 +215,9 @@
     <Content Include="Areas\Administration\Views\AdminPartyGames\_PartyGameSingleView.cshtml" />
     <Content Include="Grid.mvc.readme" />
     <Content Include="Areas\Administration\Views\AdminPartyGames\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\AdminPartyGames\Add.cshtml" />
+    <Content Include="Areas\Administration\Views\AdminPartyGames\Delete.cshtml" />
+    <Content Include="Areas\Administration\Views\AdminPartyGames\HardDelete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.fr.js" />
