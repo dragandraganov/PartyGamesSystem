@@ -1,0 +1,13 @@
+﻿@using PartyGamesSystem.Web.Areas.Administration.AdminViewModels
+@model AdminCategoryViewModel
+<div class="panel panel-body">
+    <div class="text-center">@Model.Name</div>
+    <div class="row">
+        <div class="col-md-4">
+            <img class="img-responsive" alt="no-image"/>
+        </div>
+        <div class="col-md-8">
+            <div>Category: @Model.PartyGames.Count</div>
+        </div>
+    </div>
+</div>

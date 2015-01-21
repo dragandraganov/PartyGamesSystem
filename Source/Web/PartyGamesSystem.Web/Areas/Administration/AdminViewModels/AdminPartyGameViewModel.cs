@@ -11,7 +11,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PartyGamesSystem.Web.Areas.Administration.AdminViewModels
 {
-    public class AdminPartyGameViewModel : IMapFrom<PartyGame>, IHaveCustomMappings
+    public class AdminPartyGameViewModel : IMapFrom<PartyGame>, IHaveCustomMappings, IValidatableObject
     {
         
         public int Id { get; set; }

@@ -9,10 +9,11 @@ using PartyGamesSystem.Data.Models;
 using System.IO;
 using System.Collections.Generic;
 using System.Web;
+using PartyGamesSystem.Common;
 
 namespace PartyGamesSystem.Web.Areas.Administration.Controllers
 {
-
+    [Authorize(Roles=GlobalConstants.AdminRole)]
     public class AdminPartyGamesController : AdminController
     {
         public AdminPartyGamesController(IPartyGamesSystemData data)
@@ -23,17 +24,15 @@ namespace PartyGamesSystem.Web.Areas.Administration.Controllers
         // GET: Administration/AdminPartyGames/AllPartyGames
         public ActionResult Index()
         {
-            //TODO Grid control in the view
             var allPartyGames = this.Data
                 .PartyGames
                 .AllWithDeleted()
                 .Project()
-.To<AdminPartyGameViewModel>();
+                .To<AdminPartyGameViewModel>();
             return View(allPartyGames);
         }
 
-        //Get: Add new party game
-        [Authorize]
+        //GET: Add new party game
         public ActionResult Add()
         {
             var newPartyGameViewModel = new AdminPartyGameViewModel
@@ -44,7 +43,6 @@ namespace PartyGamesSystem.Web.Areas.Administration.Controllers
             return View(newPartyGameViewModel);
         }
 
-        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Add(AdminPartyGameViewModel partyGame)
@@ -77,7 +75,6 @@ namespace PartyGamesSystem.Web.Areas.Administration.Controllers
         }
 
         //GET: Edit party game
-        [Authorize]
         public ActionResult Edit(int id)
         {
             var existingPartyGame = this.Data
@@ -96,7 +93,6 @@ namespace PartyGamesSystem.Web.Areas.Administration.Controllers
             return View(existingPartyGame);
         }
 
-        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(AdminPartyGameViewModel partyGame)
@@ -132,7 +128,6 @@ namespace PartyGamesSystem.Web.Areas.Administration.Controllers
             return View(partyGame);
         }
 
-        [Authorize]
         public ActionResult Delete(int id)
         {
             var existingPartyGame = this.Data
@@ -151,7 +146,6 @@ namespace PartyGamesSystem.Web.Areas.Administration.Controllers
             return View(existingPartyGame);
         }
 
-        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(AdminPartyGameViewModel partyGame)
@@ -161,7 +155,6 @@ namespace PartyGamesSystem.Web.Areas.Administration.Controllers
                 var existingPartyGame = this.Data
                     .PartyGames
                     .GetById(partyGame.Id);
-                Mapper.Map(partyGame, existingPartyGame);
                 this.Data.PartyGames.Delete(existingPartyGame);
                 this.Data.SaveChanges();
 
@@ -171,26 +164,11 @@ namespace PartyGamesSystem.Web.Areas.Administration.Controllers
             return View(partyGame);
         }
 
-        [Authorize]
         public ActionResult HardDelete(int id)
         {
-            var existingPartyGame = this.Data
-                .PartyGames
-                .AllWithDeleted()
-                .Where(pg => pg.Id == id)
-                .Project()
-                .To<AdminPartyGameViewModel>()
-                .FirstOrDefault();
-            if (existingPartyGame == null)
-            {
-                throw new HttpException(404, "Party game not found");
-            }
-            //var allCategories = this.GetCategories();
-            //existingPartyGame.Categories = new SelectList(allCategories, "Value", "Text");
-            return View(existingPartyGame);
+            return this.Delete(id);
         }
 
-        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult HardDelete(AdminPartyGameViewModel partyGame)
@@ -200,7 +178,6 @@ namespace PartyGamesSystem.Web.Areas.Administration.Controllers
                 var existingPartyGame = this.Data
                     .PartyGames
                     .GetById(partyGame.Id);
-                Mapper.Map(partyGame, existingPartyGame);
                 this.Data.PartyGames.ActualDelete(existingPartyGame);
                 this.Data.SaveChanges();
 

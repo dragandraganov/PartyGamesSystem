@@ -14,7 +14,7 @@
         .Sanitized(false)
         .Encoded(false)
         .Titled(string.Empty)
-        .RenderValueAs(o => Html.ActionLink("Edit", "Edit", "AdminPartyGames", new { Id = o.Id }, new { @class = "btn btn-primary btn-sm" }).ToHtmlString())
+        .RenderValueAs(model => CheckIfDeletedForEdit(model) )
         .Filterable(false).Sortable(false);
     columns.Add(model => model.CategoryName).Titled("Category").Filterable(true).Sortable(true);
     columns.Add(model => model.Title).Filterable(true).Sortable(true);
@@ -25,16 +25,34 @@
     columns.Add()
         .Sanitized(false)
         .Encoded(false)
-        .Titled(string.Empty)
-        .RenderValueAs(o => Html.ActionLink("Delete", "Delete", "AdminPartyGames", new { Id = o.Id }, new { @class = "btn btn-warning btn-sm" }).ToHtmlString())
+        .RenderValueAs(model => CheckIfDeletedForDelete(model))
         .Filterable(false)
         .Sortable(false);
     columns.Add()
        .Sanitized(false)
        .Encoded(false)
-       .Titled(string.Empty)
-       .RenderValueAs(o => Html.ActionLink("Hard Delete", "HardDelete", "AdminPartyGames", new { Id = o.Id }, new { @class = "btn btn-danger btn-xs" }).ToHtmlString())
+       .RenderValueAs(model => Html.ActionLink("Hard Delete", "HardDelete", "AdminPartyGames", new { Id = model.Id }, new { @class = "btn btn-danger btn-xs" }).ToHtmlString())
        .Filterable(false)
        .Sortable(false);
 
 }).Selectable(false)
+
+@helper CheckIfDeletedForDelete(AdminPartyGameViewModel partyGame)
+{
+    if (partyGame.IsDeleted)
+    {
+        <span class="text-danger">Deleted</span>
+    }
+    else
+    {
+        @Html.ActionLink("Delete", "Delete", "AdminPartyGames", new { Id = partyGame.Id }, new { @class = "btn btn-warning btn-sm" })
+    }
+}
+
+@helper CheckIfDeletedForEdit(AdminPartyGameViewModel partyGame)
+{
+    if (!partyGame.IsDeleted)
+    {
+        @Html.ActionLink("Edit", "Edit", "AdminPartyGames", new { Id = partyGame.Id }, new { @class = "btn btn-primary btn-sm" })
+    }
+}
