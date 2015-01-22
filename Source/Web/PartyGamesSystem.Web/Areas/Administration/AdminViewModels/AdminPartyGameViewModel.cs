@@ -32,9 +32,6 @@ namespace PartyGamesSystem.Web.Areas.Administration.AdminViewModels
 
         public int? MaxPlayingPeople { get; set; }
 
-        //TODO implement Image property of Model
-        //public virtual Image Image { get; set; }
-
         [Display(Name = "Category")]
         [UIHint("DropDownList")]
         public int? CategoryId { get; set; }

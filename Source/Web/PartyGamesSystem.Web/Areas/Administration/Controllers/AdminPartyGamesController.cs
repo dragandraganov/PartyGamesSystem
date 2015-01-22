@@ -187,30 +187,5 @@ namespace PartyGamesSystem.Web.Areas.Administration.Controllers
 
             return View(partyGame);
         }
-
-        public ActionResult Image(int id)
-        {
-            var image = this.Data.Images.GetById(id);
-            if (image == null)
-            {
-                throw new HttpException(404, "Image not found");
-            }
-
-            return File(image.Content, "image/" + image.FileExtension);
-        }
-
-        private IEnumerable<SelectListItem> GetCategories()
-        {
-            var categories = this.Data.Categories
-                       .All()
-                       .Select(c => new SelectListItem
-                       {
-                           Value = c.Id.ToString(),
-                           Text = c.Name
-                       })
-                       .ToList();
-
-            return categories;
-        }
     }
 }

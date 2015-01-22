@@ -4,7 +4,14 @@
     <div class="text-center">@Model.Title</div>
     <div class="row">
         <div class="col-md-4">
-            <img class="img-responsive" alt="no-image"/>
+            @if (Model.ImageId != null)
+            {
+                <img style="float:left" src="@Url.Action("Image", "Images", new { id = Model.ImageId.Value })" alt="@Model.Title image" class="img-responsive form-control-sm" />
+            }
+            else
+            {
+                <span class="form-control form-control-sm">No image</span>
+            }
         </div>
         <div class="col-md-8">
             <div>Category: @Model.CategoryName</div>

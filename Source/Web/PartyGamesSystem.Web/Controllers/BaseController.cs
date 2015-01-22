@@ -1,7 +1,9 @@
 ﻿using PartyGamesSystem.Data;
 using PartyGamesSystem.Data.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -23,6 +25,20 @@ namespace PartyGamesSystem.Web.Controllers
             this.UserProfile = this.Data.Users.All().Where(u => u.UserName == requestContext.HttpContext.User.Identity.Name).FirstOrDefault();
 
             return base.BeginExecute(requestContext, callback, state);
+        }
+
+        public IEnumerable<SelectListItem> GetCategories()
+        {
+            var categories = this.Data.Categories
+                       .All()
+                       .Select(c => new SelectListItem
+                       {
+                           Value = c.Id.ToString(),
+                           Text = c.Name
+                       })
+                       .ToList();
+
+            return categories;
         }
     }
 }

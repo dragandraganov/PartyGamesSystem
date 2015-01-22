@@ -35,6 +35,11 @@
                             <li>@Html.ActionLink("AdminPartyGames", "Index", "AdminPartyGames", new { area = "Administration" }, null)</li>
                             <li>@Html.ActionLink("AdminCategories", "Index", "AdminCategories", new { area = "Administration" }, null)</li>
                         }
+
+                        else
+                        {
+                            <li>@Html.ActionLink("Manage my games", "Index", "ManagePartyGames", new { area = string.Empty }, null)</li>
+                        }
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

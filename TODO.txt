@@ -1,0 +1,8 @@
+1. Add forgot password to login page
+2. Add registration with username (not mandatory)
+3. Add audio file to PartyGame model (check how to record audio files)
+4. Add link to video (animation) to PartyGame model
+6. Add rating to PartyGame model
+7. Add Facebook likes + Facebook profile
+8. Add column "Author" to PartyGame Index view (if Authorized and the game is User's one write "My Game", other side write author's username)
+9. Check how to validate for html tags in client side
