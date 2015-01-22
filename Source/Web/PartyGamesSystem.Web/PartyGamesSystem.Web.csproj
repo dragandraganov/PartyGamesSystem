@@ -289,6 +289,9 @@
     <Content Include="Views\ManagePartyGames\Index.cshtml" />
     <Content Include="Views\ManagePartyGames\Create.cshtml" />
     <Content Include="Views\Shared\_PartyGameSingleView.cshtml" />
+    <Content Include="Views\ManagePartyGames\Details.cshtml" />
+    <Content Include="Views\ManagePartyGames\Delete.cshtml" />
+    <Content Include="Views\ManagePartyGames\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
