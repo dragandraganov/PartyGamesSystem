@@ -1,1 +1,88 @@
-﻿
+﻿@using PartyGamesSystem.Web.ViewModels
+@model PartyGameViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm("Edit", "ManagePartyGames", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(pg => pg.ImageId)
+    @Html.HiddenFor(pg => pg.CreatedOn)
+    @Html.HiddenFor(pg => pg.ModifiedOn)
+    @Html.HiddenFor(pg => pg.DeletedOn)
+    @Html.HiddenFor(pg => pg.IsDeleted)
+    @Html.HiddenFor(pg => pg.PreserveCreatedOn)
+
+    <h4>Edit party game "@Model.Title"</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(pg => pg.CategoryId, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.DropDownListFor(pg => pg.CategoryId, Model.Categories, new { @class = "form-control form-control-sm" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(pg => pg.Title, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(pg => pg.Title, new { @class = "form-control form-control-sm" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(pg => pg.Description, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(pg => pg.Description, new { @class = "form-control form-control-sm", @rows = "5" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(pg => pg.NecessaryItems, "Necessary Items", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(pg => pg.NecessaryItems, new { @class = "form-control form-control-sm" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(pg => pg.MinPlayingPeople, "Minimal playing people", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(pg => pg.MinPlayingPeople, new { @class = "form-control form-control-sm", @type = "number" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(pg => pg.MaxPlayingPeople, "Maximal playing people", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(pg => pg.MaxPlayingPeople, new { @class = "form-control form-control-sm", @type = "number" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="currentImage">Current image</label>
+        <div class="col-md-10" id="currentImage">
+            @if (Model.ImageId != null)
+            {
+                <img style="float:left" src="@Url.Action("Image", "Images", new {area=string.Empty, id = Model.ImageId.Value })" alt="@Model.Title image" class="img-responsive form-control-sm" />
+            }
+            else
+            {
+                <span class="form-control form-control-sm">No image</span>
+            }
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(pg => pg.UploadedImage, "Change image", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(pg => pg.UploadedImage, new { @class = "form-control form-control-sm", @type = "file" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-info" value="Save changes" />
+            <a href="~/ManagePartyGames/Index" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

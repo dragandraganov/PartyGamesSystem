@@ -53,7 +53,7 @@
         <div class="col-md-10" id="currentImage">
             @if (Model.ImageId != null)
             {
-                <img style="float:left" src="@Url.Action("Image", "AdminPartyGames", new { id = Model.ImageId.Value })" alt="@Model.Title image" class="img-responsive form-control-sm" />
+                <img style="float:left" src="@Url.Action("Image", "Images", new { area = string.Empty, id = Model.ImageId.Value })" alt="@Model.Title image" class="img-responsive form-control-sm" />
             }
             else
             {

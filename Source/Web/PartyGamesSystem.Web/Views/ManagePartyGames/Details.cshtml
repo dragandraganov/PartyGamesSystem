@@ -1,1 +1,42 @@
-﻿
+﻿@using PartyGamesSystem.Web.ViewModels
+@model PartyGameViewModel
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title text-center">@Model.Title</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-5">
+                @if (Model.ImageId != null)
+                {
+                    <img style="float:left" src="@Url.Action("Image", "Images", new { id = Model.ImageId.Value })" alt="@Model.Title image" class="img-responsive form-control-sm" />
+                }
+                else
+                {
+                    <span class="form-control form-control-sm">No image</span>
+                }
+            </div>
+            <div class="col-md-2">
+                <div>Category: @Model.CategoryName</div>
+                <div>Necessery Items: @Model.NecessaryItems</div>
+                <div>Suitable for: @Model.MinPlayingPeople - @Model.MaxPlayingPeople people</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <div class="panel-title">Description:
+            <div class="panel panel-body">
+                @Model.Description
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center">
+    @Html.ActionLink("Details", "Details", "ManagePartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "btn btn-info btn-sm" })
+    @Html.ActionLink("Edit", "Edit", "ManagePartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "btn btn-primary btn-sm" })
+    @Html.ActionLink("Delete", "Delete", "ManagePartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "btn btn-danger btn-sm" })
+    @Html.ActionLink("Back", "Index", "ManagePartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "btn btn-default btn-sm" })
+</div>
