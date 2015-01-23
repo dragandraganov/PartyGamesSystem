@@ -2,24 +2,56 @@
 @using PartyGamesSystem.Web.ViewModels
 @model PartyGameViewModel
 <div class="panel panel-body">
-    <div class="text-center">@Model.Title</div>
-    <div class="row">
-        <div class="col-md-4">
-            @if (Model.ImageId != null)
-            {
-                <img style="float:left" src="@Url.Action("Image", "Images", new { id = Model.ImageId.Value })" alt="@Model.Title image" class="img-responsive form-control-sm" />
-            }
-            else
-            {
-                <span class="form-control form-control-sm">No image</span>
-            }
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4 class="text-center">@Model.Title.ToUpper()</h4>
         </div>
-        <div class="col-md-8">
-            <div>Category: @Model.CategoryName</div>
-            <div>Necessery Items: @Model.NecessaryItems</div>
-            <div>Suitable for: @Model.MinPlayingPeople - @Model.MaxPlayingPeople people</div>
-            <div>Description: @Html.ShowDescription(Model)</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4">
+                    @if (Model.ImageId != null)
+                    {
+                        <img src="@Url.Action("Image", "Images", new { id = Model.ImageId.Value })" alt="@Model.Title image" class="img-responsive form-control-sm" />
+                    }
+                    else
+                    {
+                        <span class="form-control form-control-sm">No image</span>
+                    }
+                    <br />
+                </div>
+                <div class="col-md-7">
+                    <div class="well row">
+                        <div class="col-md-4 text-info">CATEGORY:</div>
+                        <div class="col-md-8 text-attention">@Model.CategoryName</div>
+                    </div>
+                    <div class="well row">
+                        <div class="col-md-4 text-info">NECESSARY ITEMS:</div>
+                        <div class="col-md-8 text-attention">@Html.ShowNecessaryItemsInIndexView(Model)</div>
+                    </div>
+                    <div class="well row">
+                        <div class="col-md-4 text-info">SUITABLE FOR:</div>
+                        <div class="col-md-8 text-attention">@Html.ShowPlayingPeopleInfo(Model)</div>
+                    </div>
+                    <div class="well row">
+                        <div class="col-md-4 text-info">DESCRIPTION:</div>
+                        <div class="col-md-8 text-attention">@Html.ShowDescription(Model)</div>
+                    </div>
+                    <div class="well row">
+                        <div class="col-md-4 text-info">AUTHOR:</div>
+                        <div class="col-md-8 text-attention">@Model.AuthorName</div>
+                    </div>
+                </div>
+            </div>
         </div>
+        @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.AuthorName)
+        {
+            <div class="text-center">
+                @Html.ActionLink("Details", "Details", "ManagePartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "btn btn-info btn-sm" })
+                @Html.ActionLink("Edit", "Edit", "ManagePartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "btn btn-primary btn-sm" })
+                @Html.ActionLink("Delete", "Delete", "ManagePartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "btn btn-danger btn-sm" })
+            </div>
+        }
+        <br />
     </div>
 </div>
 

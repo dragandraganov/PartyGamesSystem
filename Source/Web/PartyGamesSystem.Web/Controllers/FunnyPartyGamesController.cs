@@ -15,9 +15,18 @@ namespace PartyGamesSystem.Web.Controllers
         }
 
         // GET: PartyGames
-        public ActionResult Index()
+        public ActionResult Index(string query)
         {
-            var allPartyGames = this.Data.PartyGames.All().Project().To<PartyGameViewModel>();
+            var contro = RouteData.Values;
+            if (query==null)
+            {
+                query = string.Empty;
+            }
+            var allPartyGames = this.Data.PartyGames
+                .All()
+                .Where(pg => pg.Title.Contains(query))
+                .Project()
+                .To<PartyGameViewModel>();
             return View(allPartyGames);
         }
     }

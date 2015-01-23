@@ -21,11 +21,17 @@ namespace PartyGamesSystem.Web.Controllers
         }
 
         // GET: All User's Games
-        public ActionResult Index()
+        public ActionResult Index(string query)
         {
+            if (query == null)
+            {
+                query = string.Empty;
+            }
+
             var allPartyGames = this.Data.PartyGames
                 .All()
                 .Where(pg => pg.Author.Id == this.UserProfile.Id)
+                .Where(pg => pg.Title.Contains(query))
                 .Project()
                 .To<PartyGameViewModel>();
             return View(allPartyGames);
