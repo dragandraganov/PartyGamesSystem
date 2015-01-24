@@ -10,7 +10,7 @@
     {
         public PartyGame()
         {
-            this.Comments=new HashSet<Comment>();
+            this.Comments = new HashSet<Comment>();
         }
 
         [Key]
@@ -40,9 +40,9 @@
 
         public virtual Category Category { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
 
-        public DateTime CreatedOn {get;set;}
+        public DateTime CreatedOn { get; set; }
 
         public bool PreserveCreatedOn { get; set; }
 

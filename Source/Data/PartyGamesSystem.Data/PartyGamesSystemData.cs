@@ -61,6 +61,14 @@ namespace PartyGamesSystem.Data
             }
         }
 
+        public IDeletableEntityRepository<Rating> Ratings
+        {
+            get
+            {
+                return this.GetRepository<Rating>();
+            }
+        }
+
         public IDeletableEntityRepository<User> Users
         {
             get

@@ -24,6 +24,8 @@ namespace PartyGamesSystem.Data
 
         public IDbSet<Comment> Comments { get; set; }
 
+        public IDbSet<Rating> Ratings { get; set; }
+
         public static PartyGamesSystemDbContext Create()
         {
             return new PartyGamesSystemDbContext();
