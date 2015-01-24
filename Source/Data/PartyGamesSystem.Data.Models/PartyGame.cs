@@ -1,12 +1,18 @@
-﻿using PartyGamesSystem.Data.Contracts.Models;
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-
-namespace PartyGamesSystem.Data.Models
+﻿namespace PartyGamesSystem.Data.Models
 {
+    using System.Collections.Generic;
+    using PartyGamesSystem.Data.Contracts.Models;
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+
     public class PartyGame : IAuditInfo, IDeletableEntity
     {
+        public PartyGame()
+        {
+            this.Comments=new HashSet<Comment>();
+        }
+
         [Key]
         public int Id { get; set; }
 
@@ -33,6 +39,8 @@ namespace PartyGamesSystem.Data.Models
         public int? CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
+
+        public ICollection<Comment> Comments { get; set; }
 
         public DateTime CreatedOn {get;set;}
 

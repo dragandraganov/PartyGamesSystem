@@ -14,6 +14,7 @@ namespace PartyGamesSystem.Data.Models
         public User()
         {
             this.CreatedOn = DateTime.Now;
+            this.PreserveCreatedOn = true;
             this.PartyGames = new HashSet<PartyGame>();
         }
 

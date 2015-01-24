@@ -10,4 +10,5 @@
 10. Add Search option in _Layout
 11. Validation MaxPlayingPeople must be > MinPlayingPeople
 12. Move all @herlpers in C# code in Helpers folder
-13. Send email in ForgotPassword - create email service in Task SenAsynch
+13. Send email in ForgotPassword - create email service in Task SenAsynch //Done
+14. Index of searchable columns

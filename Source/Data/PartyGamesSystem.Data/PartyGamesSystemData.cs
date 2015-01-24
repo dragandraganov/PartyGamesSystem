@@ -53,6 +53,14 @@ namespace PartyGamesSystem.Data
             }
         }
 
+        public IDeletableEntityRepository<Comment> Comments
+        {
+            get
+            {
+                return this.GetRepository<Comment>();
+            }
+        }
+
         public IDeletableEntityRepository<User> Users
         {
             get
