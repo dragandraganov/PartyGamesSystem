@@ -21,7 +21,7 @@
     max-width: 280px;
 }
 
-.img-responsive{
+.img-responsive {
     margin: 0 auto;
 }
 
@@ -29,11 +29,31 @@ input[type=number]:invalid {
     background-color: #FFCCCC;
 }
 
-.bolded{
-    font-weight:bold;
+.bolded {
+    font-weight: bold;
 }
 
-.text-attention{
-    color:#0d00b0;
+.text-attention {
+    color: #0d00b0;
 }
+
+.rating-star{
+    background:url('Images/color_star.png') no-repeat;
+    width:25px;
+    height:24px;
+    -webkit-filter:grayscale(100%);
+}
+
+.filled{
+    -webkit-filter:grayscale(0%);
+}
+
+.rating-area input{
+    display:none;
+}
+
+.rating-panel{
+    display:none
+}
+
 

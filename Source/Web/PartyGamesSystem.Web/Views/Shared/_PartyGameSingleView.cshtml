@@ -8,7 +8,7 @@
         </div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 text-center">
                     @if (Model.ImageId != null)
                     {
                         <img src="@Url.Action("Image", "Images", new { id = Model.ImageId.Value })" alt="@Model.Title image" class="img-responsive form-control-sm" />
@@ -18,6 +18,31 @@
                         <span class="form-control form-control-sm">No image</span>
                     }
                     <br />
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="btn btn-warning btn-xs showRating">
+                            Rate this game
+                        </div>
+                        <br />
+                        <br />
+                        using (Ajax.BeginForm("Vote", "Ratings", new { partyGameId = Model.Id }, null, new { @class = "rating-panel" }))
+                        {
+                            <div class="rating-area">
+                                <label for="radio-1" class="rating-star"></label>
+                                <input id="radio-1" type="radio" name="rating" value="1">
+                                <label for="radio-2" class="rating-star"></label>
+                                <input id="radio-2" type="radio" name="rating" value="2">
+                                <label for="radio-3" class="rating-star"></label>
+                                <input id="radio-3" type="radio" name="rating" value="3">
+                                <label for="radio-4" class="rating-star"></label>
+                                <input id="radio-4" type="radio" name="rating" value="4">
+                                <label for="radio-5" class="rating-star"></label>
+                                <input id="radio-5" type="radio" name="rating" value="5">
+                            </div>
+                            <div class="btn btn-xs btn-default pull-left btn-clear-rating">Clear</div>
+                            <input type="submit" value="Rate" class="btn btn-xs btn-success pull-right" />
+                        }
+                    }
                 </div>
                 <div class="col-md-7">
                     <div class="well row">
@@ -43,15 +68,17 @@
                 </div>
             </div>
         </div>
-        @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.AuthorName)
-        {
-            <div class="text-center">
-                @Html.ActionLink("Details", "Details", "ManagePartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "btn btn-info btn-sm" })
+
+        <div class="text-center">
+            @Html.ActionLink("Details", "Details", "ManagePartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "btn btn-info btn-sm" })
+            @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.AuthorName)
+            {
                 @Html.ActionLink("Edit", "Edit", "ManagePartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "btn btn-primary btn-sm" })
-                @Html.ActionLink("Delete", "Delete", "ManagePartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "btn btn-danger btn-sm" })
-            </div>
-        }
+                <span>
+                    @Html.ActionLink("Delete", "Delete", "ManagePartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "btn btn-danger btn-sm" })
+                </span>
+            }
+        </div>
         <br />
     </div>
 </div>
-

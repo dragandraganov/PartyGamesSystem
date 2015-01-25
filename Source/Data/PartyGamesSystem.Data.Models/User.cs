@@ -17,6 +17,7 @@ namespace PartyGamesSystem.Data.Models
             this.PreserveCreatedOn = true;
             this.PartyGames = new HashSet<PartyGame>();
             this.Comments = new HashSet<Comment>();
+            this.Ratings = new HashSet<Rating>();
         }
 
         public DateTime CreatedOn { get; set; }
@@ -32,6 +33,8 @@ namespace PartyGamesSystem.Data.Models
         public virtual ICollection<PartyGame> PartyGames { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
+
+        public virtual ICollection<Rating> Ratings { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {

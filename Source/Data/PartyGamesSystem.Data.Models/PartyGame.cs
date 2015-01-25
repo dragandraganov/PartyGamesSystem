@@ -11,6 +11,7 @@
         public PartyGame()
         {
             this.Comments = new HashSet<Comment>();
+            this.Ratings = new HashSet<Rating>();
         }
 
         [Key]
@@ -41,6 +42,8 @@
         public virtual Category Category { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
+
+        public virtual ICollection<Rating> Ratings { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

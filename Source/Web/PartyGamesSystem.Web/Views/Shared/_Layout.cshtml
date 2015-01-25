@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Funny Party Games - @ViewBag.Title</title>
     @{
-        //TODO:correct bundles
+    //TODO:correct bundles
     }
-    <link href="~/Content/Gridmvc.css" rel="stylesheet"/>
+    <link href="~/Content/Gridmvc.css" rel="stylesheet" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("styles", required: false)
@@ -58,5 +58,34 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/gridmvc")
     @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        $(".showRating").click(function () {
+            $(this).nextAll(".rating-panel").toggle();
+        })
+        $(".rating-star").mouseenter(function () {
+            $(this).prevUntil(".rating-area").addClass('filled');
+            $(this).addClass('filled');
+        })
+        $(".rating-star").mouseleave(function () {
+            if ($(this).parent().find(".rating-star").hasClass('selected')) {
+                var selected = $(this).parent().find('.selected').first();
+                selected.nextUntil('input :submit').removeClass('filled')
+            }
+            else {
+                $(this).prevUntil(".rating-area").removeClass('filled');
+                $(this).removeClass('filled');
+            }
+        })
+        $(".rating-star").click(function () {
+            $(this).parent().find(".rating-star").removeClass('filled selected');
+            $(this).prevUntil(".rating-area").addClass('filled');
+            $(this).addClass('filled selected');
+        })
+        $('.btn-clear-rating').click(function () {
+            $(this).parent().find('.rating-star').removeClass('filled selected');
+        })
+    </script>
+    <script>
+    </script>
 </body>
 </html>
