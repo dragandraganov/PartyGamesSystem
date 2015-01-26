@@ -1,0 +1,17 @@
+﻿@using PartyGamesSystem.Web.ViewModels
+@model IEnumerable<CommentViewModel>
+
+<h2>Index</h2>
+
+@if (Model!=null)
+{
+    foreach (var comment in Model)
+    {
+        @Html.Partial("_CommentSingleView", comment)
+    }
+}
+
+else
+{
+    <div class="text-danger">There are no comments at all.</div>
+}
