@@ -14,7 +14,7 @@ namespace PartyGamesSystem.Data.Models
 
         public virtual PartyGame PartyGame { get; set; }
 
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         public virtual User User { get; set; }
 

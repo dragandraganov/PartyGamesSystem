@@ -69,6 +69,14 @@ namespace PartyGamesSystem.Data
             }
         }
 
+        public IDeletableEntityRepository<Like> Likes
+        {
+            get
+            {
+                return this.GetRepository<Like>();
+            }
+        }
+
         public IDeletableEntityRepository<User> Users
         {
             get

@@ -17,6 +17,10 @@
 
         IDeletableEntityRepository<User> Users { get; }
 
+        IDeletableEntityRepository<Rating> Ratings { get; }
+
+        IDeletableEntityRepository<Like> Likes { get; }
+
         void Dispose();
 
         int SaveChanges();

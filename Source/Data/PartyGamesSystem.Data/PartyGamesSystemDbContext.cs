@@ -26,6 +26,8 @@ namespace PartyGamesSystem.Data
 
         public IDbSet<Rating> Ratings { get; set; }
 
+        public IDbSet<Like> Likes { get; set; }
+
         public static PartyGamesSystemDbContext Create()
         {
             return new PartyGamesSystemDbContext();
