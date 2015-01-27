@@ -80,13 +80,14 @@
             $(this).parent().find(".rating-star").removeClass('filled selected');
             $(this).prevUntil(".rating-area").addClass('filled');
             $(this).addClass('filled selected');
+            var radioChecked = $(this).next();
+            radioChecked.attr('checked', true);
             var $selectedStar = $(this).parent().find(".selected").first().next();
             var $rating = $selectedStar.val();
             $(this).parent().find('#rating-value').val($rating);
         })
         $('.btn-clear-rating').click(function () {
             $(this).parent().find('.rating-star').removeClass('filled selected');
-            $(this).parent().find('#rating-value').removeAttr('value');
         })
 
         $('.submit-rating').click(function () {

@@ -28,17 +28,16 @@
                         using (Ajax.BeginForm("Vote", "Ratings", new { partyGameId = Model.Id }, null, new { @class = "rating-panel" }))
                         {
                             <div class="rating-area">
-                                <label for="radio-1" class="rating-star"></label>
-                                <input id="radio-1" type="radio" name="rating" value="1">
-                                <label for="radio-2" class="rating-star"></label>
-                                <input id="radio-2" type="radio" name="rating" value="2">
-                                <label for="radio-3" class="rating-star"></label>
-                                <input id="radio-3" type="radio" name="rating" value="3">
-                                <label for="radio-4" class="rating-star"></label>
-                                <input id="radio-4" type="radio" name="rating" value="4">
-                                <label for="radio-5" class="rating-star"></label>
-                                <input id="radio-5" type="radio" name="rating" value="5">
-                                <input type="hidden" id="rating-value" />
+                                <label class="rating-star"></label>
+                                <input type="radio" name="rating" value="1">
+                                <label class="rating-star"></label>
+                                <input type="radio" name="rating" value="2">
+                                <label class="rating-star"></label>
+                                <input type="radio" name="rating" value="3">
+                                <label class="rating-star"></label>
+                                <input type="radio" name="rating" value="4">
+                                <label class="rating-star"></label>
+                                <input type="radio" name="rating" value="5">
                             </div>
                             <div class="btn btn-xs btn-default pull-left btn-clear-rating">Clear</div>
                             <input type="submit" value="Rate" class="btn btn-xs btn-success pull-right submit-rating" />
