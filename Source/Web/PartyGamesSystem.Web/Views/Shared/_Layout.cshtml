@@ -10,6 +10,7 @@
     <link href="~/Content/Gridmvc.css" rel="stylesheet" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
     @RenderSection("styles", required: false)
 </head>
 <body>
@@ -54,7 +55,6 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/gridmvc")
     @RenderSection("scripts", required: false)

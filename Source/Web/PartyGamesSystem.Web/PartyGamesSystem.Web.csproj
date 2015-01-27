@@ -309,6 +309,7 @@
     <Content Include="Views\Shared\_Search.cshtml" />
     <Content Include="Views\Shared\_CommentSingleView.cshtml" />
     <Content Include="Views\Comments\Index.cshtml" />
+    <Content Include="Views\Shared\_Rated.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

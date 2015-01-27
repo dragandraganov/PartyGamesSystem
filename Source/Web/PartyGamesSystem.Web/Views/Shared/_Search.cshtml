@@ -2,7 +2,7 @@
     ViewBag.SearchQuery = Request.QueryString["query"];
 }
 
-@using (Html.BeginForm("Index", this.ViewContext.RouteData.Values["controller"].ToString(), FormMethod.Get))
+@using (Html.BeginForm("Index", null, FormMethod.Get))
 {
     <div>
         <input type="text" name="query" value="@ViewBag.SearchQuery" />
