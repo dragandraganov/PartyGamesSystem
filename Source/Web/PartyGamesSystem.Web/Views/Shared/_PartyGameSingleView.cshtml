@@ -20,12 +20,37 @@
                     <br />
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <div class="btn btn-warning btn-xs showRating">
-                            Rate this game
-                        </div>
+                        if (Model.CurrentUserRating != null)
+                        {
+                            <div>
+                                <span class="pull-left">Rated</span>
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    if (i <= Model.CurrentUserRating.Value)
+                                    {
+                                        <img src="~/Content/Images/small-color_star.png" class="small-color-star filled" />
+                                        @*<label class="rating-star filled"></label>*@
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Content/Images/small-color_star.png" class="small-color-star" />
+                                    }
+                                }
+                            </div>
+                            <br />
+                            <div class="btn btn-default btn-xs showRating">
+                                Rate it again
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="btn btn-warning btn-xs showRating">
+                                Rate this game
+                            </div>
+                        }
                         <br />
                         <br />
-                        using (Ajax.BeginForm("Vote", "Ratings", new { partyGameId = Model.Id }, null, new { @class = "rating-panel" }))
+                        using (Ajax.BeginForm("Vote", "Ratings", new { gameId = Model.Id, ratingId = Model.CurrentUserRating == null ? -1 : Model.CurrentUserRating.Id }, null, new { @class = "rating-panel" }))
                         {
                             <div class="rating-area">
                                 <label class="rating-star"></label>

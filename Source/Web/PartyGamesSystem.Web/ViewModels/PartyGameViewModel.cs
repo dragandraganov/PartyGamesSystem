@@ -54,6 +54,10 @@ namespace PartyGamesSystem.Web.ViewModels
 
         public IEnumerable<SelectListItem> Categories { get; set; }
 
+        public virtual ICollection<Rating> Ratings { get; set; }
+
+        public Rating CurrentUserRating { get; set; }
+
         [DataType(DataType.Upload)]
         public HttpPostedFileBase UploadedImage { get; set; }
 

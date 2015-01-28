@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace PartyGamesSystem.Data.Contracts.Repository
 {
@@ -22,9 +23,16 @@ namespace PartyGamesSystem.Data.Contracts.Repository
 
         protected DbContext Context { get; set; }
 
-        public virtual IQueryable<T> All()
+        public virtual IQueryable<T> All(params Expression<Func<T, object>>[] includeExpressions)
         {
-            return this.DbSet.AsQueryable();
+            IQueryable<T> set = this.DbSet.AsQueryable();
+
+            foreach (var expression in includeExpressions)
+            {
+                set = set.Include(expression);
+            }
+
+            return set;
         }
 
         public virtual T GetById(int id)

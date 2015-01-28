@@ -2,8 +2,8 @@
 2. Add registration with username (not mandatory)
 3. Add audio file to PartyGame model (check how to record audio files)
 4. Add link to video (animation) to PartyGame model
-5. Add Comment like model - see in arenabg.com for template
-6. Add Rating like model
+5. Add Comment model - see in arenabg.com for template
+6. Add Rating model
 7. Add Facebook likes + Facebook profile
 8. Add column "Author" to PartyGame Index view (if Authorized and the game is User's one write "My Game", other side write author's username)
 9. Check how to validate for html tags in client side
@@ -12,3 +12,7 @@
 12. Move all @herlpers in C# code in Helpers folder
 13. Send email in ForgotPassword - create email service in Task SenAsynch //Done
 14. Index of searchable columns
+15. Change Search option with AJAX request
+16. Move Details in PartyGamesController without Authorization
+17. Extract Rate Views in partial views
+18. Using RatingDescriptionEnum (not mandatory)

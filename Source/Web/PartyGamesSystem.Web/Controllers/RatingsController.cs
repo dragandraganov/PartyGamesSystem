@@ -1,5 +1,6 @@
 ﻿using PartyGamesSystem.Data;
 using PartyGamesSystem.Data.Models;
+using PartyGamesSystem.Web.ViewModels;
 using System;
 using System.Linq;
 using System.Web.Mvc;
@@ -13,7 +14,7 @@ namespace PartyGamesSystem.Web.Controllers
         {
         }
 
-        public void Vote(int partyGameId)
+        public void Vote(int gameId, int ratingId)
         {
             if (!this.Request.IsAjaxRequest())
             {
@@ -28,14 +29,26 @@ namespace PartyGamesSystem.Web.Controllers
             }
 
             int ratingValue = int.Parse(this.Request["rating"]);
-            if (false) //TODO check is this game already voted from current user
+            if (ratingId > -1) //TODO check is this game already voted from current user
             {
-
+                this.ModifyRating(ratingId, ratingValue);
             }
+
             else
             {
-                this.AddNewRating(partyGameId, ratingValue);
+                this.AddNewRating(gameId, ratingValue);
             }
+        }
+
+        private void ModifyRating(int ratingId, int ratingValue)
+        {
+            var ratingEntity = this.Data.Ratings
+                .All()
+                .Where(r => r.Id == ratingId)
+                .FirstOrDefault();
+            ratingEntity.Value = ratingValue;
+            this.Data.Ratings.Update(ratingEntity);
+            this.Data.SaveChanges();
         }
 
         public void AddNewRating(int partyGameId, int value)

@@ -3,6 +3,7 @@ using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace PartyGamesSystem.Data.Contracts.Repository
 {
@@ -16,7 +17,7 @@ namespace PartyGamesSystem.Data.Contracts.Repository
 
         //TODO Implement workaround for DeletableEntities
 
-        public override IQueryable<T> All()
+        public override IQueryable<T> All(params Expression<Func<T, object>>[] includeExpressions)
         {
             return base.All().Where(x => !x.IsDeleted);
         }

@@ -7,9 +7,9 @@ using PartyGamesSystem.Data;
 
 namespace PartyGamesSystem.Web.Controllers
 {
-    public class FunnyPartyGamesController : BaseController
+    public class PartyGamesController : BaseController
     {
-        public FunnyPartyGamesController(IPartyGamesSystemData data)
+        public PartyGamesController(IPartyGamesSystemData data)
             : base(data)
         {
         }
@@ -17,16 +17,27 @@ namespace PartyGamesSystem.Web.Controllers
         // GET: PartyGames
         public ActionResult Index(string query)
         {
-            var contro = RouteData.Values;
-            if (query==null)
+            if (query == null)
             {
                 query = string.Empty;
             }
+
             var allPartyGames = this.Data.PartyGames
-                .All()
+                .All(pg => pg.Ratings)
                 .Where(pg => pg.Title.Contains(query))
                 .Project()
-                .To<PartyGameViewModel>();
+                .To<PartyGameViewModel>()
+                .OrderBy(g => g.Id)
+                .ToList();
+
+            if (this.UserProfile != null)
+            {
+                foreach (var game in allPartyGames)
+                {
+                    game.CurrentUserRating = game.Ratings.Where(r => r.UserId == this.UserProfile.Id).FirstOrDefault();
+                }
+            }
+
             return View(allPartyGames);
         }
     }

@@ -44,6 +44,12 @@ input[type=number]:invalid {
     -webkit-filter:grayscale(100%);
 }
 
+.small-color-star{
+    width:15px;
+    height:14px;
+    -webkit-filter:grayscale(100%);
+}
+
 .filled{
     -webkit-filter:grayscale(0%);
 }
@@ -55,5 +61,6 @@ input[type=number]:invalid {
 .rating-panel{
     display:none
 }
+
 
 
