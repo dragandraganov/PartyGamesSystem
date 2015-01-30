@@ -7,7 +7,7 @@
 
 @Html.Partial("_Search")
 
-@if (Model.Count()==0)
+@if (Model.Count() == 0)
 {
     <div class="panel panel-body text-danger">
         There are no games that match your search criteria
@@ -18,7 +18,9 @@ else
 {
     foreach (var game in Model)
     {
-        @Html.Partial("_PartyGameSingleView", game)
+        <div class="panel panel-body" id="game-section-@game.Id">
+            @Html.Partial("_PartyGameSingleView", game)
+        </div>
     }
 }
 

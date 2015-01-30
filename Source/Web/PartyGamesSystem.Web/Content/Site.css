@@ -45,6 +45,7 @@ input[type=number]:invalid {
 }
 
 .small-color-star{
+    background:url('Images/small-color_star.png') no-repeat;
     width:15px;
     height:14px;
     -webkit-filter:grayscale(100%);
@@ -60,6 +61,10 @@ input[type=number]:invalid {
 
 .rating-panel{
     display:none
+}
+
+.btn-common{
+    background-color:#d1d1d1;
 }
 
 

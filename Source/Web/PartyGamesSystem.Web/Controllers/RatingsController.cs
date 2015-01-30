@@ -4,6 +4,7 @@ using PartyGamesSystem.Web.ViewModels;
 using System;
 using System.Linq;
 using System.Web.Mvc;
+using AutoMapper.QueryableExtensions;
 
 namespace PartyGamesSystem.Web.Controllers
 {
@@ -14,44 +15,56 @@ namespace PartyGamesSystem.Web.Controllers
         {
         }
 
-        public void Vote(int gameId, int ratingId)
+        public ActionResult Vote(int gameId, int ratingId)
         {
+            var votedGame = this.Data
+               .PartyGames.All()
+               .Where(pg => pg.Id == gameId).Project()
+               .To<PartyGameViewModel>()
+               .FirstOrDefault();
+
+            var ratingEntity = this.Data.Ratings
+               .All()
+               .Where(r => r.Id == ratingId)
+               .FirstOrDefault();
+
+            votedGame.CurrentUserRating = ratingEntity;
+
             if (!this.Request.IsAjaxRequest())
             {
-                return;
+                return PartialView("_PartyGameSingleView", votedGame); //TODO Return appropriate message
             }
 
             string rating = this.Request["rating"];
 
-            if (rating == null) //TODO check is this game already voted from current user and modify Rating
+            if (rating == null)
             {
-                return;
+                return PartialView("_PartyGameSingleView", votedGame);
             }
 
-            int ratingValue = int.Parse(this.Request["rating"]);
-            if (ratingId > -1) //TODO check is this game already voted from current user
+            int ratingValue = int.Parse(rating);
+            if (ratingId > -1)
             {
-                this.ModifyRating(ratingId, ratingValue);
+                this.ModifyRating(ratingValue, ratingEntity, votedGame);
             }
 
             else
             {
-                this.AddNewRating(gameId, ratingValue);
+                this.AddNewRating(gameId, ratingValue, votedGame);
             }
+
+            return PartialView("_PartyGameSingleView", votedGame);
         }
 
-        private void ModifyRating(int ratingId, int ratingValue)
+        private void ModifyRating(int ratingValue, Rating ratingEntity, PartyGameViewModel votedGame)
         {
-            var ratingEntity = this.Data.Ratings
-                .All()
-                .Where(r => r.Id == ratingId)
-                .FirstOrDefault();
             ratingEntity.Value = ratingValue;
             this.Data.Ratings.Update(ratingEntity);
             this.Data.SaveChanges();
+            votedGame.CurrentUserRating = ratingEntity;
         }
 
-        public void AddNewRating(int partyGameId, int value)
+        public void AddNewRating(int partyGameId, int value, PartyGameViewModel votedGame)
         {
             var newRating = new Rating();
             newRating.Value = value;
@@ -60,6 +73,8 @@ namespace PartyGamesSystem.Web.Controllers
             newRating.UserId = currentUserId;
             this.Data.Ratings.Add(newRating);
             this.Data.SaveChanges();
+            votedGame.CurrentUserRating = newRating;
+            votedGame.Ratings.Add(newRating);
         }
     }
 }

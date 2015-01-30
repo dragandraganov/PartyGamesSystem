@@ -59,14 +59,16 @@
     @Scripts.Render("~/bundles/gridmvc")
     @RenderSection("scripts", required: false)
     <script type="text/javascript">
-        $(".showRating").click(function () {
+        $(document).on('click', '.showRating', function () {
+            $(this).nextAll(".rating-panel").find('.rating-star').removeClass('filled selected');
             $(this).nextAll(".rating-panel").toggle();
         })
-        $(".rating-star").mouseenter(function () {
+       
+        $(document).on('mouseenter', ".rating-star", function () {
             $(this).prevUntil(".rating-area").addClass('filled');
             $(this).addClass('filled');
         })
-        $(".rating-star").mouseleave(function () {
+        $(document).on('mouseleave', ".rating-star", function () {
             if ($(this).parent().find(".rating-star").hasClass('selected')) {
                 var selected = $(this).parent().find('.selected').first();
                 selected.nextUntil('input :submit').removeClass('filled')
@@ -76,7 +78,7 @@
                 $(this).removeClass('filled');
             }
         })
-        $(".rating-star").click(function () {
+        $(document).on('click', ".rating-star", function () {
             $(this).parent().find(".rating-star").removeClass('filled selected');
             $(this).prevUntil(".rating-area").addClass('filled');
             $(this).addClass('filled selected');
@@ -86,12 +88,8 @@
             var $rating = $selectedStar.val();
             $(this).parent().find('#rating-value').val($rating);
         })
-        $('.btn-clear-rating').click(function () {
+        $(document).on('click', '.btn-clear-rating', function () {
             $(this).parent().find('.rating-star').removeClass('filled selected');
-        })
-
-        $('.submit-rating').click(function () {
-            $(this).parent().hide();
         })
     </script>
     <script>

@@ -88,5 +88,15 @@ namespace PartyGamesSystem.Web.ViewModels
                 }
             }
         }
+
+        public string GetAverageRating()
+        {
+            if (this.Ratings.Count() != 0)
+            {
+                return String.Format("{0} / 5",((double)this.Ratings.Sum(r => r.Value) / this.Ratings.Count()).ToString("F1"));
+            }
+
+            return "Not rated yet";
+        }
     }
 }
