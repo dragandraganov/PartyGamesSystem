@@ -23,7 +23,7 @@ namespace PartyGamesSystem.Data.Migrations
         protected override void Seed(PartyGamesSystemDbContext context)
         {
 
-            if (context.Users.Where(u => u.Email == "kakagina@bg.bg").Count() == 0)
+            if (context.Users.Where(u => u.Email == "bibito@bg.bg").Count() == 0)
             {
                 this.userManager = new UserManager<User>(new UserStore<User>(context));
 
@@ -32,7 +32,7 @@ namespace PartyGamesSystem.Data.Migrations
                 context.SaveChanges();
 
                 var user = new User();
-                user.UserName = "kakagina@bg.bg";
+                user.UserName = "bibito@bg.bg";
                 user.Email = user.UserName;
                 this.userManager.Create(user, "Dr@g06");
 
