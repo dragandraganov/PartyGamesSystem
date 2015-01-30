@@ -23,18 +23,19 @@ namespace PartyGamesSystem.Data.Migrations
         protected override void Seed(PartyGamesSystemDbContext context)
         {
 
-            if (context.Users.Where(u=>u.Email=="bategoyko@bg.bg").Count()==0)
+            if (context.Users.Where(u => u.Email == "kakagina@bg.bg").Count() == 0)
             {
                 this.userManager = new UserManager<User>(new UserStore<User>(context));
 
                 var user = new User();
-                user.UserName = "bategoyko@bg.bg";
+                user.UserName = "kakagina@bg.bg";
                 user.Email = user.UserName;
                 this.userManager.Create(user, "Dr@g06");
 
                 this.userManager.AddToRole(user.Id, GlobalConstants.AdminRole);
+                context.SaveChanges();
             }
-            
+
         }
     }
 }
