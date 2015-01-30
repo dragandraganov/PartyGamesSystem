@@ -27,6 +27,10 @@ namespace PartyGamesSystem.Data.Migrations
             {
                 this.userManager = new UserManager<User>(new UserStore<User>(context));
 
+                var adminRole = new IdentityRole(GlobalConstants.AdminRole);
+                context.Roles.Add(adminRole);
+                context.SaveChanges();
+
                 var user = new User();
                 user.UserName = "kakagina@bg.bg";
                 user.Email = user.UserName;
