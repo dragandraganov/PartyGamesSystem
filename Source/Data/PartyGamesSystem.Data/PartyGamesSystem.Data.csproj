@@ -63,6 +63,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\PartyGamesSystem.Common\PartyGamesSystem.Common.csproj">
+      <Project>{9B1DDC5F-EAD4-45AB-88E8-0F24043D9145}</Project>
+      <Name>PartyGamesSystem.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PartyGamesSystem.Data.Contracts\PartyGamesSystem.Data.Contracts.csproj">
       <Project>{ae1b0614-3ade-44fd-8863-0394eef14589}</Project>
       <Name>PartyGamesSystem.Data.Contracts</Name>
