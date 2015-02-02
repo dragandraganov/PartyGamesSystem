@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
     <title>Funny Party Games - @ViewBag.Title</title>
     @{
     //TODO:correct bundles
@@ -63,7 +64,7 @@
             $(this).nextAll(".rating-panel").find('.rating-star').removeClass('filled selected');
             $(this).nextAll(".rating-panel").toggle();
         })
-       
+
         $(document).on('mouseenter', ".rating-star", function () {
             $(this).prevUntil(".rating-area").addClass('filled');
             $(this).addClass('filled');
