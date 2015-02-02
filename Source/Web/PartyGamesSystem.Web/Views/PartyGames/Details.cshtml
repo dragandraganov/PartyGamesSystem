@@ -47,8 +47,4 @@
         </div>
     </div>
 </div>
-<div class="text-center">
-    @Html.ActionLink("Edit", "Edit", "ManagePartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "btn btn-primary btn-sm" })
-    @Html.ActionLink("Delete", "Delete", "ManagePartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "btn btn-danger btn-sm" })
-    @Html.ActionLink("Back", "Index", "ManagePartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "btn btn-default btn-sm" })
-</div>
+@Html.Partial("_ManageButtonsPartial", Model)

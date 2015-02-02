@@ -69,8 +69,8 @@
                         </div>
                         <div class="btn btn-xs btn-default pull-left btn-clear-rating">Clear</div>
                         <input type="submit" value="Rate" class="btn btn-xs btn-success pull-right submit-rating" />
-                    <br />
-                    <br />
+                        <br />
+                        <br />
                     }
                 }
 
@@ -104,15 +104,6 @@
         </div>
     </div>
 
-    <div class="text-center">
-        @Html.ActionLink("Details", "Details", "ManagePartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "btn btn-info btn-sm" })
-        @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.AuthorName)
-        {
-            @Html.ActionLink("Edit", "Edit", "ManagePartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "btn btn-primary btn-sm" })
-            <span>
-                @Html.ActionLink("Delete", "Delete", "ManagePartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "btn btn-danger btn-sm" })
-            </span>
-        }
-    </div>
+    @Html.Partial("_ManageButtonsPartial", Model)
     <br />
 </div>

@@ -37,22 +37,7 @@ namespace PartyGamesSystem.Web.Controllers
             return View(allPartyGames);
         }
 
-        //GET: Edit party game
-        public ActionResult Details(int id)
-        {
-            var existingPartyGame = this.Data
-                .PartyGames
-                .AllWithDeleted()
-                .Where(pg => pg.Id == id)
-                .Project()
-                .To<PartyGameViewModel>()
-                .FirstOrDefault();
-            if (existingPartyGame == null)
-            {
-                throw new HttpException(404, "Party game not found");
-            }
-            return View(existingPartyGame);
-        }
+        
 
         //GET: Create new game
         public ActionResult Create()

@@ -326,13 +326,14 @@
     <Content Include="Views\ManagePartyGames\Index.cshtml" />
     <Content Include="Views\ManagePartyGames\Create.cshtml" />
     <Content Include="Views\Shared\_PartyGameSingleView.cshtml" />
-    <Content Include="Views\ManagePartyGames\Details.cshtml" />
+    <Content Include="Views\PartyGames\Details.cshtml" />
     <Content Include="Views\ManagePartyGames\Delete.cshtml" />
     <Content Include="Views\ManagePartyGames\Edit.cshtml" />
     <Content Include="Views\Shared\_Search.cshtml" />
     <Content Include="Views\Shared\_CommentSingleView.cshtml" />
     <Content Include="Views\Comments\Index.cshtml" />
     <Content Include="Views\Shared\_Rated.cshtml" />
+    <Content Include="Views\Shared\_ManageButtonsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
