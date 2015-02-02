@@ -1,5 +1,6 @@
 ﻿using PartyGamesSystem.Data;
 using PartyGamesSystem.Data.Models;
+using PartyGamesSystem.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,19 @@ namespace PartyGamesSystem.Web.Controllers
                        .ToList();
 
             return categories;
+        }
+
+        public void AddCurrentUserRating(IEnumerable<PartyGameViewModel> allPartyGames)
+        {
+            if (this.UserProfile != null)
+            {
+                foreach (var game in allPartyGames)
+                {
+                    game.CurrentUserRating = game.Ratings
+                        .Where(r => r.UserId == this.UserProfile.Id)
+                        .FirstOrDefault();
+                }
+            }
         }
     }
 }

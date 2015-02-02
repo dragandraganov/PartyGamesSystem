@@ -23,9 +23,9 @@
 {
     foreach (var game in Model)
     {
-
-        @Html.Partial("_PartyGameSingleView", game)
-
+        <div class="panel panel-body" id="game-section-@game.Id">
+            @Html.Partial("_PartyGameSingleView", game)
+        </div>
     }
 }
 

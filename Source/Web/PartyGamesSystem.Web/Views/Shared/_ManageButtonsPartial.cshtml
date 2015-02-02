@@ -12,6 +12,6 @@
     }
     @if (!(@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "PartyGames" && @HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() == "Index"))
     {
-        @Html.ActionLink("Back to all games", "Index", "PartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "btn btn-default btn-sm" })
+        @Html.ActionLink("Back to all games", "Index", "PartyGames", new { area = string.Empty}, new { @class = "btn btn-default btn-sm" })
     }
 </div>

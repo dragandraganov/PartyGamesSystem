@@ -33,11 +33,15 @@ namespace PartyGamesSystem.Web.Controllers
                 .Where(pg => pg.Author.Id == this.UserProfile.Id)
                 .Where(pg => pg.Title.Contains(query))
                 .Project()
-                .To<PartyGameViewModel>();
+                .To<PartyGameViewModel>()
+                .ToList();
+
+            base.AddCurrentUserRating(allPartyGames);
+
             return View(allPartyGames);
         }
 
-        
+
 
         //GET: Create new game
         public ActionResult Create()
@@ -124,6 +128,10 @@ namespace PartyGamesSystem.Web.Controllers
                         };
                     }
                 }
+                existingPartyGame.Ratings = this.Data.Ratings
+                    .All()
+                    .Where(r => r.PartyGameId == existingPartyGame.Id)
+                    .ToList();
                 this.Data.PartyGames.Update(existingPartyGame);
                 this.Data.SaveChanges();
 

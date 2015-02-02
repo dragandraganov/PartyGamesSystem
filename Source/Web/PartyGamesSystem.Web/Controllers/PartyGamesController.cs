@@ -31,13 +31,7 @@ namespace PartyGamesSystem.Web.Controllers
                 .OrderBy(g => g.Id)
                 .ToList();
 
-            if (this.UserProfile != null)
-            {
-                foreach (var game in allPartyGames)
-                {
-                    game.CurrentUserRating = game.Ratings.Where(r => r.UserId == this.UserProfile.Id).FirstOrDefault();
-                }
-            }
+            base.AddCurrentUserRating(allPartyGames);
 
             return View(allPartyGames);
         }
