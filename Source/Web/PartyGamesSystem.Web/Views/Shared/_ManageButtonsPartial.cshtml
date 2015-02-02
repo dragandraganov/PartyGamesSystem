@@ -2,16 +2,25 @@
 @model PartyGameViewModel
 
 <div class="text-center">
-    @Html.ActionLink("Details", "Details", "PartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "btn btn-info btn-sm" })
+    @if (!(@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "PartyGames" && @HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() == "Details"))
+    {
+        @Html.ActionLink("Details", "Details", "PartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "btn btn-info btn-sm" })
+    }
     @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.AuthorName)
     {
         @Html.ActionLink("Edit", "Edit", "ManagePartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "btn btn-primary btn-sm" })
+        
         <span>
             @Html.ActionLink("Delete", "Delete", "ManagePartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "btn btn-danger btn-sm" })
         </span>
+        
+        if (@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "PartyGames" && @HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() == "Details")
+        {
+            @Html.ActionLink("All my games", "Index", "ManagePartyGames", new { area = string.Empty}, new { @class = "btn btn-common btn-sm" })
+        }
     }
     @if (!(@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "PartyGames" && @HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() == "Index"))
     {
-        @Html.ActionLink("Back to all games", "Index", "PartyGames", new { area = string.Empty}, new { @class = "btn btn-default btn-sm" })
+        @Html.ActionLink("Back to all games", "Index", "PartyGames", new { area = string.Empty }, new { @class = "btn btn-default btn-sm" })
     }
 </div>
