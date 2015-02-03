@@ -15,20 +15,9 @@ namespace PartyGamesSystem.Web.Controllers
         {
         }
 
-        //TODO: Just for test - remove in production
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: Comments
-        public ActionResult GetAllCommentsByGameId(int id)
-        {
-            return View();
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Add(int partyGameId, CommentViewModel comment )
         {
             if (comment != null && ModelState.IsValid)
@@ -40,9 +29,13 @@ namespace PartyGamesSystem.Web.Controllers
                 this.Data.Comments.Add(newComment);
                 this.Data.SaveChanges();
 
-                return RedirectToAction("Details", "PartyGames", new { id = partyGameId });
+                comment.AuthorName = this.UserProfile.UserName;
+                comment.CommentedOn = DateTime.Now;
+
+                return PartialView("_CommentPartialView", comment);
             }
-            return View();
+
+            return RedirectToAction("Details", "PartyGames", new { id = partyGameId });
         }
     }
 }

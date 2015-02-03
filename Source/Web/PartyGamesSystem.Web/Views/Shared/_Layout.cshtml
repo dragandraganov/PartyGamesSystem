@@ -14,6 +14,17 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("styles", required: false)
+    <script type="text/javascript">
+        function addEmptyComment() {
+            $('#last-comment').remove();
+            var lastComment=$('.comment').last()
+            $('<div/>', {
+                id: 'last-comment',
+                class: "panel panel-party-games"
+            }).insertAfter(lastComment)
+        }
+    </script>
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -92,6 +103,16 @@
         })
         $(document).on('click', '.btn-clear-rating', function () {
             $(this).parent().find('.rating-star').removeClass('filled selected');
+        })
+       
+        $(document).on('click', '#btn-add-comment', function () {
+            $('#last-comment').show();
+            $('#last-comment').bind('DOMSubtreeModified', function () {
+                $(this).removeAttr('id');
+                $(this).addClass('comment');
+                addEmptyComment();
+            })
+
         })
     </script>
     <script>

@@ -6,12 +6,13 @@
         <div class="panel-heading panel-heading-add">Leave comment</div>
         <div class="media">
             <div class="col-md-10 col-md-offset-1">
-                @using (Ajax.BeginForm("Add", "Comments", new { partyGameId = Model.PartyGameId}, null, new { @class = "form-horizontal", role = "form" }))
+                @using (Ajax.BeginForm("Add", "Comments", new { partyGameId = Model.PartyGameId}, new AjaxOptions { UpdateTargetId = "last-comment" }, new { @class = "form-horizontal", role = "form"  }))
                 {
                     @Html.AntiForgeryToken()
                     @Html.TextAreaFor(m => m.Content, new { @class = "form-control" })
                     <div class="col-md-4 col-md-offset-8 pr0">
-                        <input type="submit" class="btn btn-sm btn-block btn-success mt5 mb5" value="Leave comment" />
+                        <input type="submit" class="btn btn-sm btn-block btn-success mt5 mb5" value="Leave comment" id="btn-add-comment" />
+                        <div id="@Model.PartyGameId-@Model.PreviousCommentsCount"></div>
                     </div>
                 }
 

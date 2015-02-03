@@ -35,6 +35,8 @@
 
         public DateTime CommentedOn { get; set; }
 
+        public int PreviousCommentsCount { get; set; }
+
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<Comment, CommentViewModel>()

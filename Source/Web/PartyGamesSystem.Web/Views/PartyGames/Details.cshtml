@@ -47,19 +47,41 @@
         </div>
     </div>
 </div>
-<div class="panel panel-party-games p0">
-    <div class="panel-heading panel-heading-add">
-        Comments about game "<b>@Model.Title</b>"
-    </div>
-    <div class="panel panel-body ">
-        
-        @foreach (var comment in Model.Comments)
-        {
+<div class="panel panel-party-games p0 panel-comments">
+    @if (@Model.Comments.Count() == 0)
+    {
+        <div class="panel-heading panel-heading-add text-warning">
+            There are no comments about this game
+        </div>
+        <div class="panel panel-body ">
+            <div id="last-comment" class="panel panel-party-games"></div>
+        </div>
+    }
+    else
+    {
+        <div class="panel-heading panel-heading-add">
+            Comments about game "<b>@Model.Title</b>"
+        </div>
+        <div class="panel panel-body ">
+            @foreach (var comment in @Model.Comments)
+            {
+                <div class="panel panel-party-games comment">
+                    @Html.Partial("_CommentPartialView", comment)
+                </div>
+            }
+            <div id="last-comment" class="panel panel-party-games"></div>
+        </div>
+    }
 
-            @Html.Partial("_CommentPartialView", comment)
-
-        }
-    </div>
 </div>
-@Html.Partial("~/Views/Comments/_AddComment.cshtml", new CommentViewModel(Model.Id))
+@if (User.Identity.IsAuthenticated)
+{
+    @Html.Partial("~/Views/Comments/_AddComment.cshtml", new CommentViewModel(Model.Id))
+}
+else
+{
+    <span class="text-danger">If you want to comment you should login to your account</span>
+    @Html.ActionLink("Log in", "Login", "Account", routeValues: new { area = string.Empty }, htmlAttributes: null)
+    <br />
+}
 @Html.Partial("_ManageButtonsPartial", Model)

@@ -100,6 +100,16 @@
                     <div class="col-md-4 text-info">Rating:</div>
                     <div class="col-md-8 text-attention">@Model.GetAverageRating()</div>
                 </div>
+                <div class="well row">
+                    <div class="col-md-4 text-info">Comments:</div>
+                    <div class="col-md-8 text-attention">
+                        @Model.Comments.Count()
+                        @if (!(@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "PartyGames" && @HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() == "Details"))
+                        {
+                            <small>@Html.ActionLink("See all comments", "Details", "PartyGames", new { area = string.Empty, id = Model.Id }, new { @class="pull-right"})</small>
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -53,7 +53,7 @@ namespace PartyGamesSystem.Web.Controllers
             }
 
             var gameModel = Mapper.Map<PartyGame, PartyGameViewModel>(existingPartyGame);
-            gameModel.Comments = Mapper.Map<ICollection<Comment>, ICollection<CommentViewModel>>(existingPartyGame.Comments);
+            gameModel.Comments = Mapper.Map<ICollection<Comment>, IList<CommentViewModel>>(existingPartyGame.Comments);
 
             return View(gameModel);
         }

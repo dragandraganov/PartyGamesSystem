@@ -99,3 +99,7 @@ input[type=number]:invalid {
 .pr0{
     padding-right:0 !important;
 }
+
+#last-comment{
+    display:none;
+}

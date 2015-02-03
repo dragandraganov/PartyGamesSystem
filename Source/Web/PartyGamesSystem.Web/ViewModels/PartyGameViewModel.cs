@@ -56,7 +56,7 @@ namespace PartyGamesSystem.Web.ViewModels
 
         public virtual ICollection<Rating> Ratings { get; set; }
 
-        public virtual ICollection<CommentViewModel> Comments { get; set; }
+        public virtual IList<CommentViewModel> Comments { get; set; }
 
         public Rating CurrentUserRating { get; set; }
 
