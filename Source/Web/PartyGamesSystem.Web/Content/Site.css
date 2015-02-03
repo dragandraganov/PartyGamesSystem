@@ -84,8 +84,8 @@ input[type=number]:invalid {
     background: #F0F1F2;
 }
 
-.panel-body-add{
-    padding:0;
+.p0{
+    padding:0 !important;
 }
 
 .mt5{

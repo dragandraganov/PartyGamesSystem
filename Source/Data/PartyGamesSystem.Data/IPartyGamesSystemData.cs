@@ -19,6 +19,8 @@
 
         IDeletableEntityRepository<Rating> Ratings { get; }
 
+        IDeletableEntityRepository<Comment> Comments { get; }
+
         IDeletableEntityRepository<Like> Likes { get; }
 
         void Dispose();

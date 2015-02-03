@@ -5,6 +5,9 @@ using AutoMapper.QueryableExtensions;
 using PartyGamesSystem.Web.ViewModels;
 using PartyGamesSystem.Data;
 using System.Web;
+using AutoMapper;
+using PartyGamesSystem.Data.Models;
+using System.Collections.Generic;
 
 namespace PartyGamesSystem.Web.Controllers
 {
@@ -42,14 +45,17 @@ namespace PartyGamesSystem.Web.Controllers
                 .PartyGames
                 .AllWithDeleted()
                 .Where(pg => pg.Id == id)
-                .Project()
-                .To<PartyGameViewModel>()
                 .FirstOrDefault();
+
             if (existingPartyGame == null)
             {
                 throw new HttpException(404, "Party game not found");
             }
-            return View(existingPartyGame);
+
+            var gameModel = Mapper.Map<PartyGame, PartyGameViewModel>(existingPartyGame);
+            gameModel.Comments = Mapper.Map<ICollection<Comment>, ICollection<CommentViewModel>>(existingPartyGame.Comments);
+
+            return View(gameModel);
         }
 
     }

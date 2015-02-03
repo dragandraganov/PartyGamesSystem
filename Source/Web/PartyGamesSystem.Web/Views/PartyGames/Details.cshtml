@@ -47,5 +47,19 @@
         </div>
     </div>
 </div>
-@Html.Partial("~/Views/Comments/_AddComment.cshtml");
+<div class="panel panel-party-games p0">
+    <div class="panel-heading panel-heading-add">
+        Comments about game "<b>@Model.Title</b>"
+    </div>
+    <div class="panel panel-body ">
+        
+        @foreach (var comment in Model.Comments)
+        {
+
+            @Html.Partial("_CommentPartialView", comment)
+
+        }
+    </div>
+</div>
+@Html.Partial("~/Views/Comments/_AddComment.cshtml", new CommentViewModel(Model.Id))
 @Html.Partial("_ManageButtonsPartial", Model)

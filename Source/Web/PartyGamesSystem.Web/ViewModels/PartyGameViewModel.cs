@@ -56,6 +56,8 @@ namespace PartyGamesSystem.Web.ViewModels
 
         public virtual ICollection<Rating> Ratings { get; set; }
 
+        public virtual ICollection<CommentViewModel> Comments { get; set; }
+
         public Rating CurrentUserRating { get; set; }
 
         [DataType(DataType.Upload)]
@@ -93,7 +95,7 @@ namespace PartyGamesSystem.Web.ViewModels
         {
             if (this.Ratings.Count() != 0)
             {
-                return String.Format("{0} / 5",((double)this.Ratings.Sum(r => r.Value) / this.Ratings.Count()).ToString("F1"));
+                return String.Format("{0} / 5", ((double)this.Ratings.Sum(r => r.Value) / this.Ratings.Count()).ToString("F1"));
             }
 
             return "Not rated yet";
