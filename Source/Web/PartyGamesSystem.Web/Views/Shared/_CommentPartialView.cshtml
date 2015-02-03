@@ -1,31 +1,27 @@
-﻿@using PartyGamesSystem.Web.ViewModels
-@model CommentViewModel
-
-<div class="panel panel-arena mb5" id="c1034309">
-    <div class="panel-body pt5 pb5">
+﻿<div class="panel panel-party-games">
+    <div class="panel-body">
         <div class="media">
-            <div class="col-sm-1"><img src="http://cdn.arenadb.net/var/assets/users/default.png" class="img-responsive img-thumbnail" alt="no-image"></div>
             <div class="col-sm-11">
                 <div class="row-fluid">
-                    <i class="fa fa-user"></i> <a href="/users/192112/">@Model.AuthorName</a>
+                    <i class="fa fa-user"></i> <a href="/users/13224/">otherside</a>
                     <div class="pull-right">
-                        <a href="javascript: void(0);" onclick="jQuery('#reply-1034309').toggleClass('hidden');"><i class="fa fa-reply"></i> Отговори</a>
-                        <a href="javascript: void(0);" onclick="like(2, 1034309);"><i class="fa fa-thumbs-up"></i> Харесва ми (<span id="l1034309">0</span>)</a>
-                        понеделник, 26 януари 2015, 19:47
+                        <a href="javascript: void(0);" onclick="jQuery('#reply-1035726').toggleClass('hidden');"><i class="fa fa-reply"></i> Answer</a>
+                        <a href="javascript: void(0);" onclick="like(2, 1035726);"><i class="fa fa-thumbs-up"></i> I like it (<span id="l1035726">1</span>)</a>
+                        
                     </div>
                 </div>
-                <div class="row-fluid pt5">Нужни са МИ коментари относно качеството на релийза!</div>
+                <div class="row-fluid pt5"> </div>
             </div>
             <div class="clearfix"></div>
             <div class="clearfix"></div>
-            <div class="row-fluid hidden" id="reply-1034309">
+            <div class="row-fluid hidden" id="reply-1035726">
                 <div class="col-md-1"></div>
                 <div class="col-md-11 pb5">
                     <div class="row-fluid">
                         <div class="pull-left">
                             <form action="/comments/" method="post">
                                 <input type="hidden" name="action" value="reply">
-                                <input type="hidden" name="item" value="1034309">
+                                <input type="hidden" name="item" value="1035726">
                                 <div class="form-group mb0">
                                     <div class="input-group">
                                         <span class="input-group-addon p0 b0"><img src="http://cdn.arenadb.net/var/assets/users/default.png" style="width: 30px;"></span>

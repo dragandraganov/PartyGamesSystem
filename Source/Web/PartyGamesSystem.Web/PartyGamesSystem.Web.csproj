@@ -330,10 +330,11 @@
     <Content Include="Views\ManagePartyGames\Delete.cshtml" />
     <Content Include="Views\ManagePartyGames\Edit.cshtml" />
     <Content Include="Views\Shared\_Search.cshtml" />
-    <Content Include="Views\Shared\_CommentSingleView.cshtml" />
     <Content Include="Views\Comments\Index.cshtml" />
     <Content Include="Views\Shared\_Rated.cshtml" />
     <Content Include="Views\Shared\_ManageButtonsPartial.cshtml" />
+    <Content Include="Views\Shared\_CommentPartialView.cshtml" />
+    <Content Include="Views\Comments\_AddComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

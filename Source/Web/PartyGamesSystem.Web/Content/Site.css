@@ -74,3 +74,28 @@ input[type=number]:invalid {
     background-color:#d1d1d1;
     color:#000000;
 }
+
+.panel-party-games{
+    border: 1px solid #DAE1E8;
+    box-shadow: -2px -2px 3px rgba(224,226,228,0.4);
+}
+
+.panel-heading-add{
+    background: #F0F1F2;
+}
+
+.panel-body-add{
+    padding:0;
+}
+
+.mt5{
+    margin-top:5px !important;
+}
+
+.mb5{
+    margin-bottom:5px !important;
+}
+
+.pr0{
+    padding-right:0 !important;
+}
