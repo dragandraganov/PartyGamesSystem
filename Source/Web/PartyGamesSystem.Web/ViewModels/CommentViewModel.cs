@@ -1,12 +1,12 @@
-﻿using AutoMapper;
-using PartyGamesSystem.Data.Models;
-using PartyGamesSystem.Web.Infrastructure.Mapping;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace PartyGamesSystem.Web.ViewModels
+﻿namespace PartyGamesSystem.Web.ViewModels
 {
+    using AutoMapper;
+    using PartyGamesSystem.Data.Models;
+    using PartyGamesSystem.Web.Infrastructure.Mapping;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class CommentViewModel : IMapFrom<Comment>, IHaveCustomMappings
     {
         public int Id { get; set; }

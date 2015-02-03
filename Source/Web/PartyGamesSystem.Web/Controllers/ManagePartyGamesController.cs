@@ -41,8 +41,6 @@ namespace PartyGamesSystem.Web.Controllers
             return View(allPartyGames);
         }
 
-
-
         //GET: Create new game
         public ActionResult Create()
         {
@@ -90,15 +88,22 @@ namespace PartyGamesSystem.Web.Controllers
         {
             var existingPartyGame = this.Data
                 .PartyGames
-                .AllWithDeleted()
+                .All()
                 .Where(pg => pg.Id == id)
                 .Project()
                 .To<PartyGameViewModel>()
                 .FirstOrDefault();
+
             if (existingPartyGame == null)
             {
-                throw new HttpException(404, "Party game not found");
+                return new HttpNotFoundResult("Party game not found");
             }
+
+            if (existingPartyGame.AuthorName != this.UserProfile.UserName)
+            {
+                 return new HttpNotFoundResult("You are not the author of this game!");
+            }
+
             var allCategories = this.GetCategories();
             existingPartyGame.Categories = new SelectList(allCategories, "Value", "Text");
             return View(existingPartyGame);
@@ -108,6 +113,11 @@ namespace PartyGamesSystem.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(PartyGameViewModel partyGame)
         {
+            if (partyGame.AuthorName != this.UserProfile.UserName)
+            {
+                return new HttpNotFoundResult("You are not the author of this game!");
+            }
+
             if (partyGame != null && ModelState.IsValid)
             {
                 var existingPartyGame = this.Data
@@ -147,15 +157,21 @@ namespace PartyGamesSystem.Web.Controllers
         {
             var existingPartyGame = this.Data
                 .PartyGames
-                .AllWithDeleted()
+                .All()
                 .Where(pg => pg.Id == id)
                 .Project()
                 .To<PartyGameViewModel>()
                 .FirstOrDefault();
             if (existingPartyGame == null)
             {
-                throw new HttpException(404, "Party game not found");
+                return new HttpNotFoundResult("Party game not found");
             }
+
+            if (existingPartyGame.AuthorName != this.UserProfile.UserName)
+            {
+                return new HttpNotFoundResult("You are not the author of this game!");
+            }
+
             return View(existingPartyGame);
         }
 
@@ -163,6 +179,11 @@ namespace PartyGamesSystem.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(PartyGameViewModel partyGame)
         {
+            if (partyGame.AuthorName != this.UserProfile.UserName)
+            {
+                return new HttpNotFoundResult("You are not the author of this game!");
+            }
+
             if (partyGame != null && ModelState.IsValid)
             {
                 var existingPartyGame = this.Data

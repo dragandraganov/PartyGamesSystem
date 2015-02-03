@@ -7,8 +7,8 @@ namespace PartyGamesSystem.Common
     {
         public const string AdminRole = "Admin";
 
-        public const int MinRatingValue = 0;
+        //public const int MinRatingValue = 0;
 
-        public const int MaxRatingValue = 5;
+        //public const int MaxRatingValue = 5;
     }
 }
