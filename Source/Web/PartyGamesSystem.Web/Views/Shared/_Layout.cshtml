@@ -17,11 +17,12 @@
     <script type="text/javascript">
         function addEmptyComment() {
             $('#last-comment').remove();
-            var lastComment=$('.comment').last()
+            var lastComment = $('.comment').last();
             $('<div/>', {
                 id: 'last-comment',
                 class: "panel panel-party-games"
-            }).insertAfter(lastComment)
+            }).insertAfter(lastComment);
+            $('#comment-content').val('');
         }
     </script>
 
