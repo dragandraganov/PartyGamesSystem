@@ -40,9 +40,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null)</li>
+                    @*<li>@Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null)</li>
                     <li>@Html.ActionLink("About", "About", "Home", new { area = string.Empty }, null)</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = string.Empty }, null)</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = string.Empty }, null)</li>*@
                     @if (User.Identity.IsAuthenticated)
                     {
                         if (User.IsInRole(GlobalConstants.AdminRole))
@@ -113,6 +113,18 @@
                 $(this).addClass('comment');
                 addEmptyComment();
             })
+
+        })
+
+        $(document).on('click', '#show-hide-comments', function () {
+            var comments = $('.panel-comments-content').first();
+            comments.toggle();
+            if (comments.is(":visible")) {
+                $(this).html('Hide comments')
+            }
+            else {
+                $(this).html('Show comments')
+            }
 
         })
     </script>

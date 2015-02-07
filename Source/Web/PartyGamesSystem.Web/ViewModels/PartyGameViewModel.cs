@@ -95,7 +95,7 @@ namespace PartyGamesSystem.Web.ViewModels
         {
             if (this.Ratings.Count() != 0)
             {
-                return String.Format("{0} / 5", ((double)this.Ratings.Sum(r => r.Value) / this.Ratings.Count()).ToString("F1"));
+                return String.Format("{0} / 5 from {1} users", ((double)this.Ratings.Sum(r => r.Value) / this.Ratings.Count()).ToString("F1"), this.Ratings.Count());
             }
 
             return "Not rated yet";

@@ -1,6 +1,8 @@
 ﻿body {
     padding-top: 70px;
     padding-bottom: 20px;
+    background-color: #F4F4F4;
+    color: #000000;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -23,7 +25,18 @@
 
 .img-responsive {
     margin: 0 auto;
+    border-radius:20px;
 }
+
+.shadow {
+    -moz-box-shadow: 0px 0px 10px 5px gray;
+    -webkit-box-shadow: 0px 0px 10px 5px gray;
+    box-shadow: 0px 0px 10px 5px gray;
+}
+
+/*.image-container {
+    box-shadow: #e42121 10px 10px inset;
+}*/
 
 input[type=number]:invalid {
     background-color: #FFCCCC;
@@ -37,69 +50,122 @@ input[type=number]:invalid {
     color: #0d00b0;
 }
 
-.rating-star{
-    background:url('Images/color_star.png') no-repeat;
-    width:25px;
-    height:24px;
-    filter:url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /*     Firefox 10+, Firefox on Android */
-    filter:gray; /* IE6-9 */
-    -webkit-filter:grayscale(100%);
+.rating-star {
+    background: url('Images/color_star.png') no-repeat;
+    width: 25px;
+    height: 24px;
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /*     Firefox 10+, Firefox on Android */
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
 }
 
-.small-color-star{
-    background:url('Images/small-color_star.png') no-repeat;
-    width:15px;
-    height:14px;
-    filter:url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /*     Firefox 10+, Firefox on Android */
-    filter:gray; /* IE6-9 */
-    -webkit-filter:grayscale(100%);
+.small-color-star {
+    background: url('Images/small-color_star.png') no-repeat;
+    width: 15px;
+    height: 14px;
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /*     Firefox 10+, Firefox on Android */
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
 }
 
-.filled{
-    -webkit-filter:grayscale(0%);
+.filled {
+    -webkit-filter: grayscale(0%);
     filter: grayscale(0%);
 }
 
-.rating-area input{
-    display:none
+.rating-area input {
+    display: none;
 }
 
-.rating-panel{
-    display:none
+.rating-panel {
+    display: none;
 }
 
-.btn-common{
-    background-color:#d1d1d1;
-    color:#000000;
+.btn-common {
+    background-color: #d1d1d1;
+    color: #000000;
 }
 
-.panel-party-games{
+.panel-party-games {
     border: 1px solid #DAE1E8;
     box-shadow: -2px -2px 3px rgba(224,226,228,0.4);
 }
 
-.panel-heading-add{
-    background: #F0F1F2;
+.panel-heading-add {
+    background: #f4fff1;
 }
 
-.p0{
-    padding:0 !important;
+.p0 {
+    padding: 0 !important;
 }
 
-.mt5{
-    margin-top:5px !important;
+.mt5 {
+    margin-top: 5px !important;
 }
 
-.mb5{
-    margin-bottom:5px !important;
+.mb5 {
+    margin-bottom: 5px !important;
 }
 
-.pr0{
-    padding-right:0 !important;
+.pr0 {
+    padding-right: 0 !important;
 }
 
-#last-comment{
+#last-comment {
+    display: none;
+}
+
+.game-title {
+    vertical-align: top;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: xx-large;
+    font-weight: bold;
+    line-height: initial;
+}
+
+.description {
+    text-indent: 50px;
+}
+
+.nice-green {
+    color: #207a20;
+}
+
+hr.style-seven {
+    height: 30px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+    margin-bottom: -20px;
+}
+
+hr.style-seven-reversed { 
+    height: 30px;
+    border-style: solid;
+    border-color: black;
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
+    margin-top:-20px;
+}
+
+.pl5p{
+    padding-left:5%;
+}
+
+.pr5p{
+    padding-right:5%;
+}
+
+.panel-comments-content{
     display:none;
+}
+
+#show-hide-comments{
+    font-style:italic;
+    color:#207a20;
+    font-size:0.8em;
+    text-decoration:underline;
 }
