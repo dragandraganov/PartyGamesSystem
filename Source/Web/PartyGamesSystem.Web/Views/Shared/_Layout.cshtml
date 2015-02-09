@@ -41,8 +41,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @*<li>@Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null)</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = string.Empty }, null)</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = string.Empty }, null)</li>*@
+                        <li>@Html.ActionLink("About", "About", "Home", new { area = string.Empty }, null)</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = string.Empty }, null)</li>*@
                     @if (User.Identity.IsAuthenticated)
                     {
                         if (User.IsInRole(GlobalConstants.AdminRole))
@@ -61,10 +61,12 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
+    <div class="container body-content" id="body-container">
+        <div id="body">
+            @RenderBody()
+        </div>
         <footer>
+            <hr />
             <small>Powered By Dragan Draganov | e-mail: dragan.mdraganov@yahoo.com | Copyright &copy; @DateTime.Now.Year</small>
         </footer>
     </div>
@@ -105,7 +107,7 @@
         $(document).on('click', '.btn-clear-rating', function () {
             $(this).parent().find('.rating-star').removeClass('filled selected');
         })
-       
+
         $(document).on('click', '#btn-add-comment', function () {
             $('#last-comment').show();
             $('#last-comment').bind('DOMSubtreeModified', function () {
