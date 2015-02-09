@@ -9,6 +9,7 @@
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(pg => pg.CreatedOn)
+    @Html.HiddenFor(pg => pg.AuthorName)
 
     <h4>Delete party game "@Model.Title"</h4>
     <hr />
