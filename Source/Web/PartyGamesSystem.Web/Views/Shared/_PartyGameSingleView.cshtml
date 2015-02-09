@@ -2,8 +2,7 @@
 @using PartyGamesSystem.Web.ViewModels
 @model PartyGameViewModel
 
-<h4 class="text-center">@Model.Title.ToUpper()</h4>
-<div class="panel-body">
+    <h4 class="text-center">@Model.Title.ToUpper()</h4>
     <div class="row">
         <div class="col-md-4 text-center">
             @if (Model.ImageId != null)
@@ -20,16 +19,16 @@
                 if (Model.CurrentUserRating != null)
                 {
                     <div>
-                        <span class="pull-left">Rated</span>
+                        <span class="va-top pr-5 golden">Rated</span>
                         @for (int i = 1; i <= 5; i++)
                         {
                             if (i <= Model.CurrentUserRating.Value)
                             {
-                                <label class="small-color-star filled"></label>
+                                <label class="small-color-star filled va-middle"></label>
                             }
                             else
                             {
-                                <label src="~/Content/Images/small-color_star.png" class="small-color-star"></label>
+                                <label src="~/Content/Images/small-color_star.png" class="small-color-star va-middle"></label>
                             }
                         }
                     </div>
@@ -40,7 +39,7 @@
                 }
                 else
                 {
-                    <div class="btn btn-warning btn-xs showRating">
+                    <div class="btn btn-rating btn-xs showRating">
                         Rate this game
                     </div>
                 }
@@ -75,32 +74,35 @@
         </div>
         <div class="col-md-7 col-md-offset-1">
             <p class="description text-justify">@Html.ShowDescription(Model)</p>
-            
+
             <h4>Category :: <span class="nice-green">@(Model.CategoryName == string.Empty ? "None" : Model.CategoryName)</span></h4>
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-7">
                     <b>Suitable for :: </b><span>@Html.ShowPlayingPeopleInfo(Model)</span>
                 </div>
-                <div class="col-md-7">
-                    <span class="pull-right"> <b>Release Date :: </b> <span class="nice-green">@Model.CreatedOn.ToString("MMMM dd, yyyy")</span> </span>
+                <div class="col-md-5">
+                    <span> <b>Release Date :: </b> <span>@Model.CreatedOn.ToString("MMMM dd, yyyy")</span> </span>
                 </div>
             </div>
-            <div><b>Raiting :: </b>@Model.GetAverageRating()</div>
-            <div><b>Author :: </b>@Model.AuthorName</div>
+            <div class="row">
+                <div class="col-md-7">
+                    <b>Raiting :: </b>@Model.GetAverageRating()
+                </div>
+                <div class="col-md-5">
+                    <div> <b>Author :: </b> @Model.AuthorName</div>
+                </div>
+            </div>
             <hr class="style-seven" />
             <h4 class="pl5p pr5p text-justify">Necessary items :: <span><small class="nice-green">@Html.ShowNecessaryItemsInIndexView(Model)</small></span></h4>
             <hr class="style-seven-reversed" />
             <div>
-                <b>Comments :: </b>
-                @Model.Comments.Count()
                 @if (!(@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "PartyGames" && @HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() == "Details"))
                 {
-                    <small>@Html.ActionLink("See comments", "Details", "PartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "pull-right nice-green" })</small>
+                    <small>@Html.ActionLink("Comments :: " + @Model.Comments.Count(), "Details", "PartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "pull-right nice-green btn-see-comments" })</small>
                 }
             </div>
         </div>
     </div>
-</div>
 
 @Html.Partial("_ManageButtonsPartial", Model)
 <br />

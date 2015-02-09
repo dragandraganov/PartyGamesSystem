@@ -15,7 +15,7 @@ namespace PartyGamesSystem.Web.Helpers
             {
                 return new HtmlString(partyGame.Description);
             }
-            return new HtmlString(string.Format("{0}{1}", partyGame.Description.Substring(0, 200), html.Encode(html.ActionLink("...", "Details", "PartyGames", new { area = string.Empty, id = partyGame.Id }, new { title = "Show more", @class = "bolded" }))));
+            return new HtmlString(string.Format("{0}{1}", partyGame.Description.Substring(0, 200), html.Encode(html.ActionLink(" ...", "Details", "PartyGames", new { area = string.Empty, id = partyGame.Id }, new { title = "See more", @class = "bolded" }))));
         }
 
         public static IHtmlString ShowNecessaryItemsInIndexView(this HtmlHelper html, PartyGameViewModel partyGame)
@@ -28,7 +28,7 @@ namespace PartyGamesSystem.Web.Helpers
             {
                 return new HtmlString(partyGame.NecessaryItems);
             }
-            return new HtmlString(string.Format("{0}{1}", partyGame.NecessaryItems.Substring(0, 50), html.Encode(html.ActionLink("...", "Details", "PartyGames", new { area = string.Empty, id = partyGame.Id }, new { title = "Show more", @class = "bolded" }))));
+            return new HtmlString(string.Format("{0}{1}", partyGame.NecessaryItems.Substring(0, 50), html.Encode(html.ActionLink(" ...", "Details", "PartyGames", new { area = string.Empty, id = partyGame.Id }, new { title = "See more", @class = "bolded" }))));
         }
 
         public static IHtmlString ShowPlayingPeopleInfo(this HtmlHelper html, PartyGameViewModel partyGame)
