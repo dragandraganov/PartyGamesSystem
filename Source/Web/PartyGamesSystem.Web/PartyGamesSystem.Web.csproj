@@ -233,7 +233,6 @@
     <Content Include="Content\Images\party_people.png" />
     <Content Include="Content\Images\ratingStar_17x14.png" />
     <Content Include="Content\Images\small-color_star.png" />
-    <Content Include="Content\Sounds\pheasant-male-crow.wav" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -340,6 +339,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
+    <Folder Include="Content\Sounds\" />
     <Folder Include="Views\Ratings\" />
   </ItemGroup>
   <ItemGroup>
