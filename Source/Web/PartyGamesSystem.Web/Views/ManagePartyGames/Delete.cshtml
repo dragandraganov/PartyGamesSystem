@@ -53,11 +53,27 @@
         <div class="col-md-10" id="currentImage">
             @if (Model.ImageId != null)
             {
-                <img style="float:left" src="@Url.Action("Image", "Images", new { area = string.Empty, id = Model.ImageId.Value })" alt="@Model.Title image" class="img-responsive form-control-sm" />
+                <img style="float:left" src="@Url.Action("File", "AppFiles", new { area = string.Empty, id = Model.ImageId.Value })" alt="@Model.Title image" class="img-responsive form-control-sm" />
             }
             else
             {
                 <span class="form-control form-control-sm">No image</span>
+            }
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="currentImage">Current audio</label>
+        <div class="col-md-10" id="currentAudio">
+            @if (Model.AudioId != null)
+            {
+                <audio controls>
+                    <source src="@Url.Action("File", "AppFiles", new { id = Model.AudioId.Value })" />
+                </audio>
+                @*<img style="float:left" src="@Url.Action("File", "AppFiles", new { area = string.Empty, id = Model.AudioId.Value })" />*@
+            }
+            else
+            {
+                <span class="form-control form-control-sm">No audio</span>
             }
         </div>
     </div>

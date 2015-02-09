@@ -56,7 +56,7 @@
   <ItemGroup>
     <Compile Include="Category.cs" />
     <Compile Include="Comment.cs" />
-    <Compile Include="Image.cs" />
+    <Compile Include="AppFile.cs" />
     <Compile Include="Like.cs" />
     <Compile Include="PartyGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -41,6 +41,8 @@ namespace PartyGamesSystem.Web.Areas.Administration.AdminViewModels
 
         public int? ImageId { get; set; }
 
+        public int? AudioId { get; set; }
+
         public string AuthorName { get; set; }
 
         public DateTime CreatedOn { get; set; }
@@ -58,6 +60,9 @@ namespace PartyGamesSystem.Web.Areas.Administration.AdminViewModels
         [DataType(DataType.Upload)]
         public HttpPostedFileBase UploadedImage { get; set; }
 
+        [DataType(DataType.Upload)]
+        public HttpPostedFileBase UploadedAudio { get; set; }
+
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<PartyGame, AdminPartyGameViewModel>()
@@ -68,18 +73,18 @@ namespace PartyGamesSystem.Web.Areas.Administration.AdminViewModels
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            var validImageTypes = new List<string>()
-            {
-                "image/gif",
-                "image/jpeg",
-                "image/pjpeg",
-                "image/png"
-            };
+            //var validImageTypes = new List<string>()
+            //{
+            //    "image/gif",
+            //    "image/jpeg",
+            //    "image/pjpeg",
+            //    "image/png"
+            //};
 
             if (this.MinPlayingPeople != null)
             {
                 int number;
-                if (!(int.TryParse(this.MinPlayingPeople.ToString(),out number)))
+                if (!(int.TryParse(this.MinPlayingPeople.ToString(), out number)))
                 {
                     yield return new ValidationResult("Min playing people must be a number.", new[] { "MinPlayingPeople" });
                 }

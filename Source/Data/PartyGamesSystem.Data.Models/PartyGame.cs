@@ -35,7 +35,11 @@
 
         public int? ImageId { get; set; }
 
-        public virtual Image Image { get; set; }
+        public virtual AppFile Image { get; set; }
+
+        public int? AudioId { get; set; }
+
+        public virtual AppFile Audio { get; set; }
 
         public int? CategoryId { get; set; }
 

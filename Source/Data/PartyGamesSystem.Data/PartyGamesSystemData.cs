@@ -45,11 +45,11 @@ namespace PartyGamesSystem.Data
             }
         }
 
-        public IDeletableEntityRepository<Image> Images
+        public IDeletableEntityRepository<AppFile> Images
         {
             get
             {
-                return this.GetRepository<Image>();
+                return this.GetRepository<AppFile>();
             }
         }
 

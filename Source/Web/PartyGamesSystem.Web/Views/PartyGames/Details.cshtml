@@ -6,7 +6,7 @@
     <div class="col-md-4 image-container">
         @if (Model.ImageId != null)
         {
-            <img src="@Url.Action("Image", "Images", new { id = Model.ImageId.Value })" alt="@Model.Title image" class="img-responsive form-control-sm shadow" />
+            <img src="@Url.Action("File", "AppFiles", new { id = Model.ImageId.Value })" alt="@Model.Title image" class="img-responsive form-control-sm shadow" />
         }
         else
         {
@@ -18,6 +18,15 @@
         <div class="text-left game-title">@Model.Title</div>
         <br />
         <p class="description text-justify">@Model.Description</p>
+        <div>
+            @if (Model.AudioId != null)
+            {
+                <audio controls style="background-color: #000000; border-radius:5px;">
+                    <source src="@Url.Action("File", "AppFiles", new { id = Model.AudioId.Value })" />
+                </audio>
+            }
+
+        </div>
         <br />
         <h4>Category :: <span class="nice-green">@(Model.CategoryName == string.Empty ? "None" : Model.CategoryName)</span></h4>
         <br />
@@ -30,7 +39,7 @@
             </div>
         </div>
         <hr class="style-seven" />
-        <h4 class="pl5p pr5p text-justify">Necessary items :: <span ><small class="nice-green">@(Model.NecessaryItems == null || Model.NecessaryItems == string.Empty ? "Not listed" : Model.NecessaryItems)</small></span></h4>
+        <h4 class="pl5p pr5p text-justify">Necessary items :: <span><small class="nice-green">@(Model.NecessaryItems == null || Model.NecessaryItems == string.Empty ? "Not listed" : Model.NecessaryItems)</small></span></h4>
         <hr class="style-seven-reversed" />
     </div>
 </div>

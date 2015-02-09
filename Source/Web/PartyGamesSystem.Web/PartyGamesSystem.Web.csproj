@@ -207,7 +207,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ImagesController.cs" />
+    <Compile Include="Controllers\AppFilesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PartyGamesController.cs" />
     <Compile Include="Controllers\ManagePartyGamesController.cs" />
@@ -233,6 +233,7 @@
     <Content Include="Content\Images\party_people.png" />
     <Content Include="Content\Images\ratingStar_17x14.png" />
     <Content Include="Content\Images\small-color_star.png" />
+    <Content Include="Content\Sounds\pheasant-male-crow.wav" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -339,7 +340,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
-    <Folder Include="Views\Images\" />
     <Folder Include="Views\Ratings\" />
   </ItemGroup>
   <ItemGroup>

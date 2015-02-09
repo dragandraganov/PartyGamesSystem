@@ -40,6 +40,8 @@ namespace PartyGamesSystem.Web.ViewModels
 
         public int? ImageId { get; set; }
 
+        public int? AudioId { get; set; }
+
         public string AuthorName { get; set; }
 
         public DateTime CreatedOn { get; set; }
@@ -62,6 +64,9 @@ namespace PartyGamesSystem.Web.ViewModels
 
         [DataType(DataType.Upload)]
         public HttpPostedFileBase UploadedImage { get; set; }
+
+        [DataType(DataType.Upload)]
+        public HttpPostedFileBase UploadedAudio { get; set; }
 
         public void CreateMappings(IConfiguration configuration)
         {

@@ -8,7 +8,7 @@
         <div class="col-md-4 text-center">
             @if (Model.ImageId != null)
             {
-                <img src="@Url.Action("Image", "Images", new { id = Model.ImageId.Value })" alt="@Model.Title image" class="img-responsive form-control-sm" />
+                <img src="@Url.Action("File", "AppFiles", new { id = Model.ImageId.Value })" alt="@Model.Title image" class="img-responsive form-control-sm" />
             }
             else
             {
@@ -75,6 +75,7 @@
         </div>
         <div class="col-md-7 col-md-offset-1">
             <p class="description text-justify">@Html.ShowDescription(Model)</p>
+            
             <h4>Category :: <span class="nice-green">@(Model.CategoryName == string.Empty ? "None" : Model.CategoryName)</span></h4>
             <div class="row">
                 <div class="col-md-5">

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace PartyGamesSystem.Data.Models
 {
-    public class Image : IAuditInfo, IDeletableEntity
+    public class AppFile : IAuditInfo, IDeletableEntity
     {
         [Key]
         public int Id { get; set; }

@@ -55,6 +55,12 @@
         </div>
     </div>
     <div class="form-group">
+        @Html.LabelFor(pg => pg.UploadedAudio, "Add audio", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(pg => pg.UploadedAudio, new { @class = "form-control form-control-sm", @type = "file" })
+        </div>
+    </div>
+    <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-info" value="Save party game" />
             <a href="javascript:void(0);" onclick="history.go(-1);" class="btn btn-primary">Cancel</a>

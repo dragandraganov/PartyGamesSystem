@@ -18,7 +18,7 @@ namespace PartyGamesSystem.Data
 
         public IDbSet<PartyGame> PartyGames { get; set; }
 
-        public IDbSet<Image> Images { get; set; }
+        public IDbSet<AppFile> Images { get; set; }
 
         public IDbSet<Category> Categories { get; set; }
 

@@ -6,9 +6,9 @@ using PartyGamesSystem.Data;
 
 namespace PartyGamesSystem.Web.Controllers
 {
-    public class ImagesController : BaseController
+    public class AppFilesController : BaseController
     {
-        public ImagesController(IPartyGamesSystemData data)
+        public AppFilesController(IPartyGamesSystemData data)
             : base(data)
         {
         }
@@ -19,7 +19,7 @@ namespace PartyGamesSystem.Web.Controllers
             return View();
         }
 
-        public virtual ActionResult Image(int id)
+        public virtual ActionResult File(int id)
         {
             var image = this.Data.Images.GetById(id);
             if (image == null)

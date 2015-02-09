@@ -58,13 +58,29 @@ namespace PartyGamesSystem.Web.Areas.Administration.Controllers
                         partyGame.UploadedImage.InputStream.CopyTo(memory);
                         var content = memory.GetBuffer();
 
-                        newPartyGame.Image = new Image
+                        newPartyGame.Image = new AppFile
                         {
                             Content = content,
                             FileExtension = partyGame.UploadedImage.FileName.Split(new[] { '.' }).Last()
                         };
                     }
                 }
+
+                if (partyGame.UploadedAudio != null)
+                {
+                    using (var memory = new MemoryStream())
+                    {
+                        partyGame.UploadedAudio.InputStream.CopyTo(memory);
+                        var content = memory.GetBuffer();
+
+                        newPartyGame.Audio = new AppFile
+                        {
+                            Content = content,
+                            FileExtension = partyGame.UploadedAudio.FileName.Split(new[] { '.' }).Last()
+                        };
+                    }
+                }
+
                 this.Data.PartyGames.Add(newPartyGame);
                 this.Data.SaveChanges();
 
@@ -104,6 +120,7 @@ namespace PartyGamesSystem.Web.Areas.Administration.Controllers
                     .PartyGames
                     .GetById(partyGame.Id);
                 Mapper.Map(partyGame, existingPartyGame);
+
                 if (partyGame.UploadedImage != null)
                 {
                     using (var memory = new MemoryStream())
@@ -111,13 +128,29 @@ namespace PartyGamesSystem.Web.Areas.Administration.Controllers
                         partyGame.UploadedImage.InputStream.CopyTo(memory);
                         var content = memory.GetBuffer();
 
-                        existingPartyGame.Image = new Image
+                        existingPartyGame.Image = new AppFile
                         {
                             Content = content,
                             FileExtension = partyGame.UploadedImage.FileName.Split(new[] { '.' }).Last()
                         };
                     }
                 }
+
+                if (partyGame.UploadedAudio != null)
+                {
+                    using (var memory = new MemoryStream())
+                    {
+                        partyGame.UploadedAudio.InputStream.CopyTo(memory);
+                        var content = memory.GetBuffer();
+
+                        existingPartyGame.Audio = new AppFile
+                        {
+                            Content = content,
+                            FileExtension = partyGame.UploadedAudio.FileName.Split(new[] { '.' }).Last()
+                        };
+                    }
+                }
+
                 this.Data.PartyGames.Update(existingPartyGame);
                 this.Data.SaveChanges();
 
@@ -142,8 +175,6 @@ namespace PartyGamesSystem.Web.Areas.Administration.Controllers
             {
                 throw new HttpException(404, "Party game not found");
             }
-            //var allCategories = this.GetCategories();
-            //existingPartyGame.Categories = new SelectList(allCategories, "Value", "Text");
             return View(existingPartyGame);
         }
 

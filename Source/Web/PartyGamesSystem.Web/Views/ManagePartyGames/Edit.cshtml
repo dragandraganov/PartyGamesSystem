@@ -8,7 +8,9 @@
 @using (Html.BeginForm("Edit", "ManagePartyGames", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(pg => pg.AuthorName)
     @Html.HiddenFor(pg => pg.ImageId)
+    @Html.HiddenFor(pg => pg.AudioId)
     @Html.HiddenFor(pg => pg.CreatedOn)
     @Html.HiddenFor(pg => pg.ModifiedOn)
     @Html.HiddenFor(pg => pg.DeletedOn)
@@ -59,7 +61,7 @@
         <div class="col-md-10" id="currentImage">
             @if (Model.ImageId != null)
             {
-                <img style="float:left" src="@Url.Action("Image", "Images", new {area=string.Empty, id = Model.ImageId.Value })" alt="@Model.Title image" class="img-responsive form-control-sm" />
+                <img style="float:left" src="@Url.Action("File", "AppFiles", new {area=string.Empty, id = Model.ImageId.Value })" alt="@Model.Title image" class="img-responsive form-control-sm" />
             }
             else
             {
@@ -71,6 +73,28 @@
         @Html.LabelFor(pg => pg.UploadedImage, "Change image", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(pg => pg.UploadedImage, new { @class = "form-control form-control-sm", @type = "file" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="currentAudio">Current audio</label>
+        <div class="col-md-10" id="currentAudio">
+            @if (Model.AudioId != null)
+            {
+                <audio controls>
+                    <source src="@Url.Action("File", "AppFiles", new { area = string.Empty, id = Model.AudioId.Value })" />
+                </audio>
+                @*<img style="float:left" src="@Url.Action("File", "AppFiles", new {area=string.Empty, id = Model.AudioId.Value })" alt="@Model.Title image"/>*@
+            }
+            else
+            {
+                <span class="form-control form-control-sm">No audio</span>
+            }
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(pg => pg.UploadedAudio, "Change audio", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(pg => pg.UploadedAudio, new { @class = "form-control form-control-sm", @type = "file" })
         </div>
     </div>
     <div class="form-group">

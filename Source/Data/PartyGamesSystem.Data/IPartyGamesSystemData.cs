@@ -13,7 +13,7 @@
 
         IDeletableEntityRepository<Category> Categories { get; }
 
-        IDeletableEntityRepository<Image> Images { get; }
+        IDeletableEntityRepository<AppFile> Images { get; }
 
         IDeletableEntityRepository<User> Users { get; }
 

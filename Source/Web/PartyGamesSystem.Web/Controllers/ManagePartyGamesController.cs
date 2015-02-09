@@ -59,6 +59,7 @@ namespace PartyGamesSystem.Web.Controllers
             {
                 var newPartyGame = Mapper.Map<PartyGame>(partyGame);
                 newPartyGame.Author = this.UserProfile;
+
                 if (partyGame.UploadedImage != null)
                 {
                     using (var memory = new MemoryStream())
@@ -66,13 +67,29 @@ namespace PartyGamesSystem.Web.Controllers
                         partyGame.UploadedImage.InputStream.CopyTo(memory);
                         var content = memory.GetBuffer();
 
-                        newPartyGame.Image = new Image
+                        newPartyGame.Image = new AppFile
                         {
                             Content = content,
                             FileExtension = partyGame.UploadedImage.FileName.Split(new[] { '.' }).Last()
                         };
                     }
                 }
+
+                if (partyGame.UploadedAudio != null)
+                {
+                    using (var memory = new MemoryStream())
+                    {
+                        partyGame.UploadedAudio.InputStream.CopyTo(memory);
+                        var content = memory.GetBuffer();
+
+                        newPartyGame.Audio = new AppFile
+                        {
+                            Content = content,
+                            FileExtension = partyGame.UploadedAudio.FileName.Split(new[] { '.' }).Last()
+                        };
+                    }
+                }
+
                 this.Data.PartyGames.Add(newPartyGame);
                 this.Data.SaveChanges();
 
@@ -124,6 +141,7 @@ namespace PartyGamesSystem.Web.Controllers
                     .PartyGames
                     .GetById(partyGame.Id);
                 Mapper.Map(partyGame, existingPartyGame);
+
                 if (partyGame.UploadedImage != null)
                 {
                     using (var memory = new MemoryStream())
@@ -131,17 +149,39 @@ namespace PartyGamesSystem.Web.Controllers
                         partyGame.UploadedImage.InputStream.CopyTo(memory);
                         var content = memory.GetBuffer();
 
-                        existingPartyGame.Image = new Image
+                        existingPartyGame.Image = new AppFile
                         {
                             Content = content,
                             FileExtension = partyGame.UploadedImage.FileName.Split(new[] { '.' }).Last()
                         };
                     }
                 }
+
+                if (partyGame.UploadedAudio != null)
+                {
+                    using (var memory = new MemoryStream())
+                    {
+                        partyGame.UploadedAudio.InputStream.CopyTo(memory);
+                        var content = memory.GetBuffer();
+
+                        existingPartyGame.Audio = new AppFile
+                        {
+                            Content = content,
+                            FileExtension = partyGame.UploadedAudio.FileName.Split(new[] { '.' }).Last()
+                        };
+                    }
+                }
+
                 existingPartyGame.Ratings = this.Data.Ratings
                     .All()
                     .Where(r => r.PartyGameId == existingPartyGame.Id)
                     .ToList();
+
+                existingPartyGame.Comments = this.Data.Comments
+                    .All()
+                    .Where(r => r.PartyGameId == existingPartyGame.Id)
+                    .ToList();
+
                 this.Data.PartyGames.Update(existingPartyGame);
                 this.Data.SaveChanges();
 
