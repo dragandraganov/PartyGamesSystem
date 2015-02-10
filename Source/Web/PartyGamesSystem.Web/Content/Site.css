@@ -247,26 +247,42 @@ html, body {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e767', endColorstr='#daa520',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
-.va-top{
-    vertical-align:top;
+.va-top {
+    vertical-align: top;
 }
 
-.va-middle{
-    vertical-align:middle;
+.va-middle {
+    vertical-align: middle;
 }
 
-.pr-5{
-    padding-right:5px;
+.pr-5 {
+    padding-right: 5px;
 }
 
-.golden{
+.golden {
     color: #daa520;
 }
 
-.text-italic{
-    font-style:italic;
+.text-italic {
+    font-style: italic;
 }
 
-.ml5{
+.ml5 {
     margin-left: 5px;
+}
+
+.text-intro {
+    font-stretch:extra-expanded;
+    border-radius: 20px;
+    color: #48a900;
+    font-size: 4em;
+    padding: 20px 0;
+}
+
+.text-intro:nth-child(2) {
+    color: #2b6203;
+}
+
+.text-grassy{
+    color: #014823;
 }
