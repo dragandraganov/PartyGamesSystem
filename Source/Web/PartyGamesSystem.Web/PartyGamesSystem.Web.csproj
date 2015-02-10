@@ -230,7 +230,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Gridmvc.css" />
     <Content Include="Content\Images\color_star.png" />
-    <Content Include="Content\Images\party_people.png" />
+    <Content Include="Content\Images\party_people.jpg" />
+    <Content Include="Content\Images\party_people_new.png" />
+    <Content Include="Content\Images\party_people_old.png" />
     <Content Include="Content\Images\ratingStar_17x14.png" />
     <Content Include="Content\Images\small-color_star.png" />
     <Content Include="favicon.ico" />
