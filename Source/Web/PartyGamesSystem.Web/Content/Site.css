@@ -166,10 +166,6 @@ hr.style-seven-reversed {
     padding-right: 5%;
 }
 
-.panel-comments-content {
-    display: none;
-}
-
 #show-hide-comments {
     font-style: italic;
     color: #207a20;
@@ -265,4 +261,12 @@ html, body {
 
 .golden{
     color: #daa520;
+}
+
+.text-italic{
+    font-style:italic;
+}
+
+.ml5{
+    margin-left: 5px;
 }

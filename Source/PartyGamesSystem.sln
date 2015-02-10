@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logic", "Logic", "{0758BD37
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9B506790-1A6D-4B03-A845-EC360D8EDB37}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resources", "Resources\Resources.csproj", "{95B8FC1A-C5AB-4DBB-969A-F203E74BFF3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{238F7B44-0556-49DE-87D3-AB125892101F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{238F7B44-0556-49DE-87D3-AB125892101F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{238F7B44-0556-49DE-87D3-AB125892101F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95B8FC1A-C5AB-4DBB-969A-F203E74BFF3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95B8FC1A-C5AB-4DBB-969A-F203E74BFF3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95B8FC1A-C5AB-4DBB-969A-F203E74BFF3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95B8FC1A-C5AB-4DBB-969A-F203E74BFF3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

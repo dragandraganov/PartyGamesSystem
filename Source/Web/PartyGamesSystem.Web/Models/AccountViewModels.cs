@@ -49,8 +49,7 @@ namespace PartyGamesSystem.Web.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
+        [Display(Name = "Username")]
         public string Email { get; set; }
 
         [Required]
@@ -64,6 +63,11 @@ namespace PartyGamesSystem.Web.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        [StringLength(14, ErrorMessage = "The {0} must be between {2} and {1} characters long.", MinimumLength = 4)]
+        [Display(Name = "Username")]
+        public string UserName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

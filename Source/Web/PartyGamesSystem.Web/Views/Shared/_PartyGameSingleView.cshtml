@@ -98,7 +98,7 @@
             <div>
                 @if (!(@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "PartyGames" && @HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() == "Details"))
                 {
-                    <small>@Html.ActionLink("Comments :: " + @Model.Comments.Count(), "Details", "PartyGames", new { area = string.Empty, id = Model.Id }, new { @class = "pull-right nice-green btn-see-comments" })</small>
+                    <small>@Html.ActionLink("Comments :: " + @Model.Comments.Count(), "Details", "PartyGames", null, null, "panel-comments", new { area = string.Empty, id = Model.Id }, new { @class = "pull-right nice-green btn-see-comments" })</small>
                 }
             </div>
         </div>

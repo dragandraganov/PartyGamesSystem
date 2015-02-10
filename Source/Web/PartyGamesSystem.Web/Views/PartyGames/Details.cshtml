@@ -44,21 +44,21 @@
     </div>
 </div>
 
-<div class="panel panel-party-games p0 panel-comments">
+<div class="panel panel-party-games p0" id="panel-comments">
     @if (@Model.Comments.Count() == 0)
     {
         <div class="panel-heading panel-heading-add text-warning">
             There are no comments about this game
         </div>
-        <div class="panel panel-body ">
+        <div class="panel panel-body panel-comments-content">
             <div id="last-comment" class="panel panel-party-games"></div>
         </div>
     }
     else
     {
         <div class="panel-heading panel-heading-add">
-            Comments about game "<b>@Model.Title</b>"
-            <a href="#" class="pull-right text-info" id="show-hide-comments">Show comments</a>
+            <a href="#" class="pull-right text-info" id="show-hide-comments">Hide comments</a>
+            <br />
         </div>
         <div class="panel panel-body panel-comments-content">
             @foreach (var comment in @Model.Comments)
@@ -78,8 +78,8 @@
 }
 else
 {
-    <span class="text-danger">If you want to comment you should login to your account</span>
-    @Html.ActionLink("Log in", "Login", "Account", routeValues: new { area = string.Empty }, htmlAttributes: null)
+    <span class="text-success">If you want to comment you should login to your account</span>
+    @Html.ActionLink("Log in", "Login", "Account", routeValues: new { area = string.Empty }, htmlAttributes: new { @class = "text-italic ml5 text-primary" })
     <br />
 }
 <br />
