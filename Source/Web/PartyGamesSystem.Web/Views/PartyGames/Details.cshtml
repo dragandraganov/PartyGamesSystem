@@ -78,8 +78,9 @@
 }
 else
 {
-    <span class="text-success">If you want to comment you should login to your account</span>
-    @Html.ActionLink("Log in", "Login", "Account", routeValues: new { area = string.Empty }, htmlAttributes: new { @class = "text-italic ml5 text-primary" })
+    
+    @Html.ActionLink("Sign in", "Login", "Account", routeValues: new { area = string.Empty }, htmlAttributes: new { @class = "text-italic ml5 text-primary" })
+    <span class="text-success">to post a comment</span>
     <br />
 }
 <br />
