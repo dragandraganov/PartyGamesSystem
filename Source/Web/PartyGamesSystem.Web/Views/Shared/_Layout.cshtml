@@ -11,6 +11,7 @@
     <link href="~/Content/Gridmvc.css" rel="stylesheet" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/animation")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("styles", required: false)
@@ -73,64 +74,9 @@
 
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/gridmvc")
+    @Scripts.Render("~/bundles/events")
     @RenderSection("scripts", required: false)
-    <script type="text/javascript">
-        $(document).on('click', '.showRating', function () {
-            $(this).nextAll(".rating-panel").find('.rating-star').removeClass('filled selected');
-            $(this).nextAll(".rating-panel").toggle();
-        })
-
-        $(document).on('mouseenter', ".rating-star", function () {
-            $(this).prevUntil(".rating-area").addClass('filled');
-            $(this).addClass('filled');
-        })
-        $(document).on('mouseleave', ".rating-star", function () {
-            if ($(this).parent().find(".rating-star").hasClass('selected')) {
-                var selected = $(this).parent().find('.selected').first();
-                selected.nextUntil('input :submit').removeClass('filled')
-            }
-            else {
-                $(this).prevUntil(".rating-area").removeClass('filled');
-                $(this).removeClass('filled');
-            }
-        })
-        $(document).on('click', ".rating-star", function () {
-            $(this).parent().find(".rating-star").removeClass('filled selected');
-            $(this).prevUntil(".rating-area").addClass('filled');
-            $(this).addClass('filled selected');
-            var radioChecked = $(this).next();
-            radioChecked.attr('checked', true);
-            var $selectedStar = $(this).parent().find(".selected").first().next();
-            var $rating = $selectedStar.val();
-            $(this).parent().find('#rating-value').val($rating);
-        })
-        $(document).on('click', '.btn-clear-rating', function () {
-            $(this).parent().find('.rating-star').removeClass('filled selected');
-        })
-
-        $(document).on('click', '#btn-add-comment', function () {
-            $('#last-comment').show();
-            $('#last-comment').bind('DOMSubtreeModified', function () {
-                $(this).removeAttr('id');
-                $(this).addClass('comment');
-                addEmptyComment();
-            })
-
-        })
-
-        $(document).on('click', '#show-hide-comments', function () {
-            var comments = $('.panel-comments-content').first();
-            comments.toggle();
-            if (comments.is(":visible")) {
-                $(this).html('Hide comments')
-            }
-            else {
-                $(this).html('Show comments')
-            }
-
-        })
-
-    </script>
+   
     <script>
     </script>
 </body>

@@ -27,9 +27,16 @@ namespace PartyGamesSystem.Web
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/events").Include(
+                     "~/Scripts/app-events.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css", 
+                      "~/Content/animation.css"));
+
+            bundles.Add(new StyleBundle("~/Content/animation").Include(
+                      "~/Content/animation.css"));
         }
     }
 }

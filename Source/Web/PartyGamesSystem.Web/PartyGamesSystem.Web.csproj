@@ -224,6 +224,7 @@
     <Compile Include="ViewModels\PartyGameViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animation.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -259,6 +260,7 @@
     <Content Include="Areas\Administration\Views\AdminCategories\HardDelete.cshtml" />
     <Content Include="Areas\Administration\Views\AdminCategories\Index.cshtml" />
     <Content Include="Areas\Administration\Views\AdminCategories\_CategorySingleView.cshtml" />
+    <Content Include="Scripts\app-events.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\gridmvc.js" />
