@@ -61,16 +61,16 @@ namespace PartyGamesSystem.Web.Controllers
         {
             if (partyGame != null && ModelState.IsValid)
             {
-                if (this.sanitizer.Sanitize(partyGame.Description) == string.Empty)
+                if (this.sanitizer.Sanitize(partyGame.Description) != partyGame.Description)
                 {
-                    ModelState.AddModelError(string.Empty, "Your description contains avoid potentially dangerous html tags. Edit it.");
+                    ModelState.AddModelError(string.Empty, "Your description contains potentially dangerous code. Edit it.");
                     partyGame.Categories = this.GetCategories();
                     return View(partyGame);
                 }
 
-                if (partyGame.NecessaryItems != null && this.sanitizer.Sanitize(partyGame.NecessaryItems) == string.Empty)
+                if (partyGame.NecessaryItems != null && this.sanitizer.Sanitize(partyGame.NecessaryItems) != partyGame.NecessaryItems)
                 {
-                    ModelState.AddModelError(string.Empty, "The description of the necessary items contain potentially html tags. Edit it.");
+                    ModelState.AddModelError(string.Empty, "The description of the necessary items contains  potentially dangerous code. Edit it.");
                     partyGame.Categories = this.GetCategories();
                     return View(partyGame);
                 }
@@ -156,23 +156,23 @@ namespace PartyGamesSystem.Web.Controllers
 
             if (partyGame != null && ModelState.IsValid)
             {
+                if (this.sanitizer.Sanitize(partyGame.Description) != partyGame.Description)
+                {
+                    ModelState.AddModelError(string.Empty, "Your description contains potentially dangerous code. Edit it.");
+                    partyGame.Categories = this.GetCategories();
+                    return View(partyGame);
+                }
+
+                if (partyGame.NecessaryItems != null && this.sanitizer.Sanitize(partyGame.NecessaryItems) != partyGame.NecessaryItems)
+                {
+                    ModelState.AddModelError(string.Empty, "The description of the necessary items contains  potentially dangerous code. Edit it.");
+                    partyGame.Categories = this.GetCategories();
+                    return View(partyGame);
+                }
+
                 var existingPartyGame = this.Data
-                    .PartyGames
-                    .GetById(partyGame.Id);
-
-                if (this.sanitizer.Sanitize(partyGame.Description) == string.Empty)
-                {
-                    ModelState.AddModelError(string.Empty, "Your description contains avoid potentially dangerous characters. Edit it.");
-                    partyGame.Categories = this.GetCategories();
-                    return View(partyGame);
-                }
-
-                if (partyGame.NecessaryItems != null && this.sanitizer.Sanitize(partyGame.NecessaryItems) == string.Empty)
-                {
-                    ModelState.AddModelError(string.Empty, "The description of the necessary items contain potentially dangerous characters. Edit it.");
-                    partyGame.Categories = this.GetCategories();
-                    return View(partyGame);
-                }
+                   .PartyGames
+                   .GetById(partyGame.Id);
 
                 Mapper.Map(partyGame, existingPartyGame);
 

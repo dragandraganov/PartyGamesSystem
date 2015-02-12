@@ -32,9 +32,9 @@ namespace PartyGamesSystem.Web.Controllers
         {
             if (comment != null && ModelState.IsValid)
             {
-                if (this.sanitizer.Sanitize(comment.Content) == string.Empty)
+                if (this.sanitizer.Sanitize(comment.Content) != comment.Content)
                 {
-                    return this.JsonError("Your comment is potentially dangerous code. Edit it.");
+                    return this.JsonError("Your comment contains potentially dangerous code. Edit it.");
                 }
 
                 var newComment = Mapper.Map<Comment>(comment);
