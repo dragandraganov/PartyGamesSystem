@@ -72,13 +72,22 @@
     }
 
 </div>
+
+@*@if (TempData["Error"] != null)
+{
+    <div class="panel panel-danger" id="error-message">
+        <div class="panel-heading">
+            @TempData["Error"].ToString()
+        </div>
+    </div>
+}*@
+
 @if (User.Identity.IsAuthenticated)
 {
     @Html.Partial("~/Views/Comments/_AddComment.cshtml", new CommentViewModel(Model.Id))
 }
 else
 {
-    
     @Html.ActionLink("Sign in", "Login", "Account", routeValues: new { area = string.Empty }, htmlAttributes: new { @class = "text-italic ml5 text-primary" })
     <span class="text-success">to post a comment</span>
     <br />

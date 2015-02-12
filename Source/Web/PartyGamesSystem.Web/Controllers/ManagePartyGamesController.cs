@@ -9,15 +9,19 @@ using PartyGamesSystem.Data.Models;
 using System.IO;
 using System.Web;
 using PartyGamesSystem.Common;
+using PartyGamesSystem.Web.Infrastructure.Sanitizer;
 
 namespace PartyGamesSystem.Web.Controllers
 {
     [Authorize]
     public class ManagePartyGamesController : BaseController
     {
-        public ManagePartyGamesController(IPartyGamesSystemData data)
+        private readonly ISanitizer sanitizer;
+
+        public ManagePartyGamesController(IPartyGamesSystemData data, ISanitizer sanitizer)
             : base(data)
         {
+            this.sanitizer = sanitizer;
         }
 
         // GET: All User's Games
@@ -57,6 +61,20 @@ namespace PartyGamesSystem.Web.Controllers
         {
             if (partyGame != null && ModelState.IsValid)
             {
+                if (this.sanitizer.Sanitize(partyGame.Description) == string.Empty)
+                {
+                    ModelState.AddModelError(string.Empty, "Your description contains avoid potentially dangerous html tags. Edit it.");
+                    partyGame.Categories = this.GetCategories();
+                    return View(partyGame);
+                }
+
+                if (partyGame.NecessaryItems != null && this.sanitizer.Sanitize(partyGame.NecessaryItems) == string.Empty)
+                {
+                    ModelState.AddModelError(string.Empty, "The description of the necessary items contain potentially html tags. Edit it.");
+                    partyGame.Categories = this.GetCategories();
+                    return View(partyGame);
+                }
+
                 var newPartyGame = Mapper.Map<PartyGame>(partyGame);
                 newPartyGame.Author = this.UserProfile;
 
@@ -118,7 +136,7 @@ namespace PartyGamesSystem.Web.Controllers
 
             if (existingPartyGame.AuthorName != this.UserProfile.UserName)
             {
-                 return new HttpNotFoundResult("You are not the author of this game!");
+                return new HttpNotFoundResult("You are not the author of this game!");
             }
 
             var allCategories = this.GetCategories();
@@ -135,11 +153,27 @@ namespace PartyGamesSystem.Web.Controllers
                 return new HttpNotFoundResult("You are not the author of this game!");
             }
 
+
             if (partyGame != null && ModelState.IsValid)
             {
                 var existingPartyGame = this.Data
                     .PartyGames
                     .GetById(partyGame.Id);
+
+                if (this.sanitizer.Sanitize(partyGame.Description) == string.Empty)
+                {
+                    ModelState.AddModelError(string.Empty, "Your description contains avoid potentially dangerous characters. Edit it.");
+                    partyGame.Categories = this.GetCategories();
+                    return View(partyGame);
+                }
+
+                if (partyGame.NecessaryItems != null && this.sanitizer.Sanitize(partyGame.NecessaryItems) == string.Empty)
+                {
+                    ModelState.AddModelError(string.Empty, "The description of the necessary items contain potentially dangerous characters. Edit it.");
+                    partyGame.Categories = this.GetCategories();
+                    return View(partyGame);
+                }
+
                 Mapper.Map(partyGame, existingPartyGame);
 
                 if (partyGame.UploadedImage != null)

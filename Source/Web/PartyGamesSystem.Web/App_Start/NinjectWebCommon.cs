@@ -13,6 +13,7 @@ namespace PartyGamesSystem.Web.App_Start
     using PartyGamesSystem.Data;
     using PartyGamesSystem.Data.Contracts.Repository;
     using System.Data.Entity;
+    using PartyGamesSystem.Web.Infrastructure.Sanitizer;
 
     public static class NinjectWebCommon 
     {
@@ -68,6 +69,7 @@ namespace PartyGamesSystem.Web.App_Start
             kernel.Bind<IPartyGamesSystemData>().To<PartyGamesSystemData>();
             kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
             kernel.Bind(typeof(IDeletableEntityRepository<>)).To(typeof(DeletableEntityRepository<>));
+            kernel.Bind<ISanitizer>().To<HtmlSanitizerAdapter>();
         }        
     }
 }

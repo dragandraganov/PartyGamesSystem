@@ -295,14 +295,19 @@ html, body {
     color: #014823;
 }
 
-.intro-link > div > span {
-    border-radius: 100px;
-    padding: 1%;
+.intro-link {
+    display: block;
+    margin-top: 30px;
 }
 
-.intro-link:hover {
-    text-decoration: none;
-}
+    .intro-link > div > span {
+        border-radius: 100px;
+        padding: 1%;
+    }
+
+    .intro-link:hover {
+        text-decoration: none;
+    }
 
 .white-shadow {
     -moz-box-shadow: 0px 0px 10px 5px rgb(242,245,246);
@@ -311,5 +316,14 @@ html, body {
 }
 
 .image-wrapper {
-    position:relative;
+    position: relative;
 }
+
+#author-sign {
+    font-size: 0.8em;
+}
+
+.intro-bottom-text {
+    margin-bottom: 50px;
+}
+

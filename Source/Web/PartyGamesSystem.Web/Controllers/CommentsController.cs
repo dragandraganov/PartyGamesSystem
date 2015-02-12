@@ -1,6 +1,8 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using PartyGamesSystem.Data;
 using PartyGamesSystem.Data.Models;
+using PartyGamesSystem.Web.Infrastructure.Sanitizer;
 using PartyGamesSystem.Web.ViewModels;
 using System;
 using System.Linq;
@@ -10,19 +12,33 @@ namespace PartyGamesSystem.Web.Controllers
 {
     public class CommentsController : BaseController
     {
-        public CommentsController(IPartyGamesSystemData data)
+        private readonly ISanitizer sanitizer;
+
+        //public CommentsController(IPartyGamesSystemData data)
+        //    : base(data)
+        //{
+        //}
+
+        public CommentsController(IPartyGamesSystemData data, ISanitizer sanitizer)
             : base(data)
         {
+            this.sanitizer = sanitizer;
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Add(int partyGameId, CommentViewModel comment )
+        public ActionResult Add(int partyGameId, CommentViewModel comment)
         {
             if (comment != null && ModelState.IsValid)
             {
+                if (this.sanitizer.Sanitize(comment.Content) == string.Empty)
+                {
+                    return this.JsonError("Your comment is potentially dangerous code. Edit it.");
+                }
+
                 var newComment = Mapper.Map<Comment>(comment);
+
                 newComment.Author = this.UserProfile;
                 newComment.PartyGameId = partyGameId;
 
@@ -35,7 +51,8 @@ namespace PartyGamesSystem.Web.Controllers
                 return PartialView("_CommentPartialView", comment);
             }
 
-            return RedirectToAction("Details", "PartyGames", new { id = partyGameId });
+            return JsonError("Unexpexted error");
         }
+
     }
 }

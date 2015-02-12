@@ -7,12 +7,13 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
+    using System.Web.Mvc;
 
     public class CommentViewModel : IMapFrom<Comment>, IHaveCustomMappings
     {
+
         public CommentViewModel()
         {
-
         }
 
         public CommentViewModel(int partyGameId)
@@ -22,7 +23,9 @@
 
         public int Id { get; set; }
 
-        [Required]
+        [MinLength(3, ErrorMessage = "The comment text must be at least 3 characters")]
+        [Required(ErrorMessage = "The comment text must be at least 3 characters")]
+        [AllowHtml]
         public string Content { get; set; }
 
         public int PartyGameId { get; set; }
@@ -44,5 +47,6 @@
                .ForMember(cm => cm.CommentedOn, opt => opt.MapFrom(c => c.CreatedOn))
                .ReverseMap();
         }
+
     }
 }

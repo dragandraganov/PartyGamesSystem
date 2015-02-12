@@ -17,13 +17,16 @@ namespace PartyGamesSystem.Web.ViewModels
 
         [UIHint("MultiLineText")]
         [Required]
+        [RegularExpression("^[a-zA-Z 0-9]*$", ErrorMessage = "Title contains illegal characters.")]
         public string Title { get; set; }
 
         [UIHint("MultiLineText")]
         [Required]
+        [AllowHtml]
         public string Description { get; set; }
 
         [UIHint("MultiLineText")]
+        [AllowHtml]
         public string NecessaryItems { get; set; }
 
         //TODO make custom validation for MinPlayingPeople and MaxPlayingPeople
