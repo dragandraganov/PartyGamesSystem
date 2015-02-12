@@ -10,8 +10,9 @@
                     new { partyGameId = Model.PartyGameId }, 
                     new AjaxOptions 
                     {
-                        UpdateTargetId = "last-comment",
-                        OnSuccess = "addNewComment",
+                        UpdateTargetId = "all-comments",
+                        InsertionMode=InsertionMode.InsertAfter,
+                        OnSuccess="changeCommentsLabel",
                         OnFailure="showCommentSanitizeError" 
                     }, 
                     new { @class = "form-horizontal", role = "form" }))

@@ -44,43 +44,46 @@
     </div>
 </div>
 
-<div class="panel panel-party-games p0" id="panel-comments">
+<div id="panel-comments"></div>
+<br />
+<br />
+
+<div class="panel panel-party-games p0">
     @if (@Model.Comments.Count() == 0)
     {
-        <div class="panel-heading panel-heading-add text-warning">
+        <div class="panel-heading panel-heading-add text-warning" id="comments-label">
             There are no comments about this game
         </div>
-        <div class="panel panel-body panel-comments-content">
-            <div id="last-comment" class="panel panel-party-games"></div>
+        <div class="panel panel-body panel-comments-content" id="panel-comments-content">
+            <div id="all-comments"></div>
+
         </div>
     }
     else
     {
-        <div class="panel-heading panel-heading-add">
+        <div class="panel-heading panel-heading-add" id="comments-label">
             <a href="#" class="pull-right text-info" id="show-hide-comments">Hide comments</a>
             <br />
         </div>
-        <div class="panel panel-body panel-comments-content">
-            @foreach (var comment in @Model.Comments)
-            {
-                <div class="panel panel-party-games comment">
+        <div class="panel panel-body panel-comments-content" id="panel-comments-content">
+            <div id="all-comments">
+                @foreach (var comment in @Model.Comments)
+                {
                     @Html.Partial("_CommentPartialView", comment)
-                </div>
-            }
-            <div id="last-comment" class="panel panel-party-games"></div>
+                }
+            </div>
         </div>
     }
-
 </div>
 
 @*@if (TempData["Error"] != null)
-{
-    <div class="panel panel-danger" id="error-message">
-        <div class="panel-heading">
-            @TempData["Error"].ToString()
+    {
+        <div class="panel panel-danger" id="error-message">
+            <div class="panel-heading">
+                @TempData["Error"].ToString()
+            </div>
         </div>
-    </div>
-}*@
+    }*@
 
 @if (User.Identity.IsAuthenticated)
 {

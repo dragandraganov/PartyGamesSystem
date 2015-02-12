@@ -33,19 +33,8 @@
     })
 
 
-
-    //$(document).on('click', '#btn-add-comment', function () {
-    //    $('#last-comment').show();
-    //    $('#last-comment').bind('DOMSubtreeModified', function () {
-    //        $(this).removeAttr('id');
-    //        $(this).addClass('comment');
-    //        addEmptyComment();
-    //    })
-
-    //})
-
     $(document).on('click', '#show-hide-comments', function () {
-        var comments = $('.panel-comments-content').first();
+        var comments = $('#panel-comments-content');
         comments.toggle();
         if (comments.is(":visible")) {
             $(this).html('Hide comments')
@@ -56,18 +45,14 @@
     })
 })
 
-function addNewComment(result) {
-    $('#comment-error>ul>li').hide();
-    $('#last-comment').show();
-    $('#last-comment').addClass('comment');
-    $('#last-comment').removeAttr('id');
-    addEmptyComment();
-}
-
 function showCommentSanitizeError(data) {
     $('#comment-error>ul>li').hide();
     $('<h4 class="text-danger">' + data.responseJSON.errorMessage + '</h4>')
         .insertBefore('#comment-error')
-        .delay(3500)
+        .delay(2500)
         .fadeOut();
+}
+
+function changeCommentsLabel() {
+    $('#comments-label').html('<a href="#" class="pull-right text-info" id="show-hide-comments">Hide comments</a><br />')
 }

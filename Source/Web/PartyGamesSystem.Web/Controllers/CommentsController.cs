@@ -53,6 +53,5 @@ namespace PartyGamesSystem.Web.Controllers
 
             return JsonError("Unexpexted error");
         }
-
     }
 }
