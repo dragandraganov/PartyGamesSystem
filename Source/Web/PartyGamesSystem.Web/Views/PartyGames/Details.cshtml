@@ -76,15 +76,6 @@
     }
 </div>
 
-@*@if (TempData["Error"] != null)
-    {
-        <div class="panel panel-danger" id="error-message">
-            <div class="panel-heading">
-                @TempData["Error"].ToString()
-            </div>
-        </div>
-    }*@
-
 @if (User.Identity.IsAuthenticated)
 {
     @Html.Partial("~/Views/Comments/_AddComment.cshtml", new CommentViewModel(Model.Id))

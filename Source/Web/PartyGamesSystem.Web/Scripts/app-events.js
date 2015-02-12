@@ -54,5 +54,6 @@ function showCommentSanitizeError(data) {
 }
 
 function changeCommentsLabel() {
+    $('#comment-error>ul>li').hide();
     $('#comments-label').html('<a href="#" class="pull-right text-info" id="show-hide-comments">Hide comments</a><br />')
 }
