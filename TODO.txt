@@ -26,3 +26,4 @@
 Списък с любими игри
 Pri logwane da te wry]a w stranicata ot koyat si se lognal
 Add-vaneto na commentar da se pravi v OnSucces na Ajax funkciata
+Kartinka po default - nai-dobre ugolemeno logo

@@ -327,3 +327,6 @@ html, body {
     margin-bottom: 50px;
 }
 
+.logo-img {
+    max-width: 55px;
+}

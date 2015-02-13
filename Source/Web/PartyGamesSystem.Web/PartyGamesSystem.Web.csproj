@@ -235,6 +235,8 @@
     <Content Include="Content\Images\balloon-three-colors.png" />
     <Content Include="Content\Images\balloon_yellow.png" />
     <Content Include="Content\Images\color_star.png" />
+    <Content Include="Content\Images\logo-gray.png" />
+    <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\party_people.jpg" />
     <Content Include="Content\Images\party_people_new.png" />
     <Content Include="Content\Images\party_people_old.png" />

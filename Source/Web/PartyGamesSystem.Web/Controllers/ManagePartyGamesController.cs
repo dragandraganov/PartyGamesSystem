@@ -7,9 +7,8 @@ using PartyGamesSystem.Web.ViewModels;
 using AutoMapper;
 using PartyGamesSystem.Data.Models;
 using System.IO;
-using System.Web;
-using PartyGamesSystem.Common;
 using PartyGamesSystem.Web.Infrastructure.Sanitizer;
+using System.Web;
 
 namespace PartyGamesSystem.Web.Controllers
 {
@@ -90,6 +89,25 @@ namespace PartyGamesSystem.Web.Controllers
                             Content = content,
                             FileExtension = partyGame.UploadedImage.FileName.Split(new[] { '.' }).Last()
                         };
+                    }
+                }
+
+                else
+                {
+                    using (var memory = new MemoryStream())
+                    {
+                        string path = HttpContext.Server.MapPath("~/Content/Images/logo-gray.png");
+
+                        using (var file = new FileStream(path, FileMode.Open))
+                        {
+                            file.CopyTo(memory);
+                            var content = memory.GetBuffer();
+                            newPartyGame.Image = new AppFile
+                            {
+                                Content = content,
+                                FileExtension = "png"
+                            };
+                        }
                     }
                 }
 
