@@ -15,7 +15,8 @@ namespace PartyGamesSystem.Data.Models
         {
             this.CreatedOn = DateTime.Now;
             this.PreserveCreatedOn = true;
-            this.PartyGames = new HashSet<PartyGame>();
+            this.CreatedPartyGames = new HashSet<PartyGame>();
+            this.FavouritePartyGames = new HashSet<PartyGame>();
             this.Comments = new HashSet<Comment>();
             this.Ratings = new HashSet<Rating>();
             this.Likes = new HashSet<Like>();
@@ -31,7 +32,9 @@ namespace PartyGamesSystem.Data.Models
 
         public DateTime? DeletedOn { get; set; }
 
-        public virtual ICollection<PartyGame> PartyGames { get; set; }
+        public virtual ICollection<PartyGame> CreatedPartyGames { get; set; }
+
+        public virtual ICollection<PartyGame> FavouritePartyGames { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
 

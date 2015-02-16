@@ -330,3 +330,12 @@ html, body {
 .logo-img {
     max-width: 55px;
 }
+
+.btn-add-to-fav {
+    background: url("Images/add-to-fav.png") no-repeat;
+    padding-left:45px;
+    min-height:45px;
+    /*max-width: 45px;*/
+    text-indent: -9999px;
+    border:none;
+}

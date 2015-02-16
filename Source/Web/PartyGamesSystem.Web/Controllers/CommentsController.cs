@@ -51,7 +51,7 @@ namespace PartyGamesSystem.Web.Controllers
                 return PartialView("_CommentPartialView", comment);
             }
 
-            return JsonError("Unexpexted error");
+            return this.JsonError("Unexpexted error");
         }
     }
 }

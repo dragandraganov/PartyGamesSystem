@@ -15,7 +15,25 @@
         <br />
     </div>
     <div class="col-md-7 col-md-offset-1">
-        <div class="text-left game-title">@Model.Title</div>
+        <div class="row">
+            <div class="text-left game-title col-md-9">@Model.Title</div>
+            <div class="col-md-3">
+
+                @using (Ajax.BeginForm(
+                    "AddToFavorites",
+                    "ManagePartyGames",
+                    new { gameId = Model.Id },
+                    new AjaxOptions
+                    {
+                        HttpMethod = "POST"
+                    },
+                    null))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" class="btn-add-to-fav pull-right" />
+                }
+            </div>
+        </div>
         <br />
         <p class="description text-justify">@Model.Description</p>
         <div>

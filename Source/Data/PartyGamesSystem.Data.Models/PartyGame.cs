@@ -12,6 +12,7 @@
         {
             this.Comments = new HashSet<Comment>();
             this.Ratings = new HashSet<Rating>();
+            this.FavoredItUsers = new HashSet<User>();
         }
 
         [Key]
@@ -44,6 +45,8 @@
         public int? CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
+
+        public virtual ICollection<User> FavoredItUsers { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
 

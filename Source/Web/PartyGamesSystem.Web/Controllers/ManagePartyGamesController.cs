@@ -290,5 +290,21 @@ namespace PartyGamesSystem.Web.Controllers
             return View(partyGame);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddToFavorites(int gameId)
+        {
+            var existingGame = this.Data.PartyGames.All().FirstOrDefault(pg => pg.Id == gameId);
+
+            if (existingGame != null && ModelState.IsValid)
+            {
+                var currentUser = this.UserProfile;
+                currentUser.FavouritePartyGames.Add(existingGame);
+                this.Data.SaveChanges();
+            }
+
+            return this.JsonError("Unexpected error");
+        }
+
     }
 }
