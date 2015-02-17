@@ -2,7 +2,7 @@
 @using PartyGamesSystem.Web.ViewModels
 @model PartyGameViewModel
 
-<div class="row">
+<div class="row" id="game-details">
     <div class="col-md-4 image-container">
         @if (Model.ImageId != null)
         {
@@ -13,26 +13,35 @@
             <span class="form-control form-control-sm">No image</span>
         }
         <br />
+        @if (User.Identity.IsAuthenticated && Model.IsFavoritedByCurrentUser)
+        {
+            <div class="text-warning text-center">In your list of favorites</div>
+        }
     </div>
     <div class="col-md-7 col-md-offset-1">
         <div class="row">
             <div class="text-left game-title col-md-9">@Model.Title</div>
-            <div class="col-md-3">
+            @if (User.Identity.IsAuthenticated && !Model.IsFavoritedByCurrentUser)
+            {
+                <div class="col-md-3">
 
-                @using (Ajax.BeginForm(
+                    @using (Ajax.BeginForm(
                     "AddToFavorites",
                     "ManagePartyGames",
                     new { gameId = Model.Id },
                     new AjaxOptions
                     {
-                        HttpMethod = "POST"
+                        HttpMethod = "POST",
+                        UpdateTargetId="game-details",
+                        InsertionMode=InsertionMode.ReplaceWith
                     },
                     null))
-                {
-                    @Html.AntiForgeryToken()
-                    <input type="submit" class="btn-add-to-fav pull-right" />
-                }
-            </div>
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="submit" class="btn-add-to-fav pull-right" />
+                    }
+                </div>
+            }
         </div>
         <br />
         <p class="description text-justify">@Model.Description</p>

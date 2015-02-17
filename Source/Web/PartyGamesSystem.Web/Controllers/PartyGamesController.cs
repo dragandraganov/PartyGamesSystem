@@ -53,6 +53,11 @@ namespace PartyGamesSystem.Web.Controllers
             }
 
             var gameModel = Mapper.Map<PartyGame, PartyGameViewModel>(existingPartyGame);
+            if (existingPartyGame.FavoredItUsers.Contains(this.UserProfile))
+            {
+                gameModel.IsFavoritedByCurrentUser = true;
+            }
+
             gameModel.Comments = Mapper.Map<ICollection<Comment>, IList<CommentViewModel>>(existingPartyGame.Comments);
 
             return View(gameModel);

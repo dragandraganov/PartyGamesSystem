@@ -5,6 +5,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class PartyGame : IAuditInfo, IDeletableEntity
     {
@@ -30,8 +31,9 @@
 
         public int? MaxPlayingPeople { get; set; }
 
-        public string AuthorId { get; set; }
+        //public string AuthorId { get; set; }
 
+        [InverseProperty("CreatedPartyGames")]
         public virtual User Author { get; set; }
 
         public int? ImageId { get; set; }

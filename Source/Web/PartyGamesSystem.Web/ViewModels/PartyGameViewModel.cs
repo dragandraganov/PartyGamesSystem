@@ -65,6 +65,8 @@ namespace PartyGamesSystem.Web.ViewModels
 
         public Rating CurrentUserRating { get; set; }
 
+        public bool IsFavoritedByCurrentUser { get; set; }
+
         [DataType(DataType.Upload)]
         public HttpPostedFileBase UploadedImage { get; set; }
 

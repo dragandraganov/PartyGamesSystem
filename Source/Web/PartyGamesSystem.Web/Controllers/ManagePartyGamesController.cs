@@ -9,6 +9,7 @@ using PartyGamesSystem.Data.Models;
 using System.IO;
 using PartyGamesSystem.Web.Infrastructure.Sanitizer;
 using System.Web;
+using System.Collections.Generic;
 
 namespace PartyGamesSystem.Web.Controllers
 {
@@ -24,20 +25,31 @@ namespace PartyGamesSystem.Web.Controllers
         }
 
         // GET: All User's Games
-        public ActionResult Index(string query)
+        public ActionResult Index(string query, string index = "ownGames")
         {
+            var allPartyGames = new List<PartyGameViewModel>();
+
             if (query == null)
             {
                 query = string.Empty;
             }
 
-            var allPartyGames = this.Data.PartyGames
+            var entityPartyGames = this.Data.PartyGames
                 .All()
-                .Where(pg => pg.Author.Id == this.UserProfile.Id)
-                .Where(pg => pg.Title.Contains(query))
-                .Project()
-                .To<PartyGameViewModel>()
-                .ToList();
+                .Where(pg => pg.Title.Contains(query));
+
+            if (index == "ownGames")
+            {
+                allPartyGames = entityPartyGames
+                     .Where(pg => pg.Author.Id == this.UserProfile.Id)
+                     .Project()
+                     .To<PartyGameViewModel>().ToList();
+            }
+
+            else
+            {
+                allPartyGames = Mapper.Map<ICollection<PartyGame>, ICollection<PartyGameViewModel>>(this.UserProfile.FavouritePartyGames).ToList();
+            }
 
             base.AddCurrentUserRating(allPartyGames);
 
@@ -301,6 +313,9 @@ namespace PartyGamesSystem.Web.Controllers
                 var currentUser = this.UserProfile;
                 currentUser.FavouritePartyGames.Add(existingGame);
                 this.Data.SaveChanges();
+                var gameModel = Mapper.Map<PartyGame, PartyGameViewModel>(existingGame);
+                gameModel.IsFavoritedByCurrentUser = true;
+                return View("~/Views/PartyGames/Details.cshtml", gameModel);
             }
 
             return this.JsonError("Unexpected error");
