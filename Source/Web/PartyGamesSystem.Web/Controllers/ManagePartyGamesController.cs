@@ -315,11 +315,11 @@ namespace PartyGamesSystem.Web.Controllers
                 this.Data.SaveChanges();
                 var gameModel = Mapper.Map<PartyGame, PartyGameViewModel>(existingGame);
                 gameModel.IsFavoritedByCurrentUser = true;
-                return View("~/Views/PartyGames/Details.cshtml", gameModel);
+                return RedirectToAction("Details", "PartyGames", new { id = gameId });
+                //return View("~/Views/PartyGames/Details.cshtml", gameModel);
             }
 
-            return this.JsonError("Unexpected error");
+            return new HttpNotFoundResult("Party game not found");
         }
-
     }
 }

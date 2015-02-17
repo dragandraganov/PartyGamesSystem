@@ -2,116 +2,111 @@
 @using PartyGamesSystem.Web.ViewModels
 @model PartyGameViewModel
 
-<div class="row" id="game-details">
-    <div class="col-md-4 image-container">
-        @if (Model.ImageId != null)
+<div id="game-details">
+    <div class="row">
+        <div class="col-md-4 image-container">
+            @if (Model.ImageId != null)
+            {
+                <img src="@Url.Action("File", "AppFiles", new { id = Model.ImageId.Value })" alt="@Model.Title image" class="img-responsive form-control-sm shadow" />
+            }
+            else
+            {
+                <span class="form-control form-control-sm">No image</span>
+            }
+            <br />
+            @if (User.Identity.IsAuthenticated && Model.IsFavoritedByCurrentUser)
+            {
+                <div class="text-warning text-center">In your list of favorites</div>
+            }
+        </div>
+        <div class="col-md-7 col-md-offset-1">
+            <div class="row">
+                <div class="text-left game-title col-md-9">@Model.Title</div>
+                @if (User.Identity.IsAuthenticated && !Model.IsFavoritedByCurrentUser)
+                {
+                    <div class="col-md-3">
+
+                        @using (Html.BeginForm(
+                            "AddToFavorites",
+                            "ManagePartyGames",
+                            new { gameId = Model.Id }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <input type="submit" class="btn-add-to-fav pull-right" />
+                        }
+                    </div>
+                }
+            </div>
+            <br />
+            <p class="description text-justify">@Model.Description</p>
+            <div>
+                @if (Model.AudioId != null)
+                {
+                    <audio controls style="background-color: #000000; border-radius:5px;">
+                        <source src="@Url.Action("File", "AppFiles", new { id = Model.AudioId.Value })" />
+                    </audio>
+                }
+
+            </div>
+            <br />
+            <h4>Category :: <span class="nice-green">@(Model.CategoryName == string.Empty ? "None" : Model.CategoryName)</span></h4>
+            <br />
+            <div class="row">
+                <div class="col-md-5">
+                    <b>Suitable for :: </b><span>@Html.ShowPlayingPeopleInfo(Model)</span>
+                </div>
+                <div class="col-md-7">
+                    <span class="pull-right"> <b>Release Date :: </b> <span class="nice-green">@Model.CreatedOn.ToString("MMMM dd, yyyy")</span> </span>
+                </div>
+            </div>
+            <hr class="style-seven" />
+            <h4 class="pl5p pr5p text-justify">Necessary items :: <span><small class="nice-green">@(Model.NecessaryItems == null || Model.NecessaryItems == string.Empty ? "Not listed" : Model.NecessaryItems)</small></span></h4>
+            <hr class="style-seven-reversed" />
+        </div>
+    </div>
+
+    <div id="panel-comments"></div>
+    <br />
+    <br />
+
+    <div class="panel panel-party-games p0">
+        @if (@Model.Comments.Count() == 0)
         {
-            <img src="@Url.Action("File", "AppFiles", new { id = Model.ImageId.Value })" alt="@Model.Title image" class="img-responsive form-control-sm shadow" />
+            <div class="panel-heading panel-heading-add text-warning" id="comments-label">
+                There are no comments about this game
+            </div>
+            <div class="panel panel-body panel-comments-content" id="panel-comments-content">
+                <div id="all-comments"></div>
+
+            </div>
         }
         else
         {
-            <span class="form-control form-control-sm">No image</span>
-        }
-        <br />
-        @if (User.Identity.IsAuthenticated && Model.IsFavoritedByCurrentUser)
-        {
-            <div class="text-warning text-center">In your list of favorites</div>
-        }
-    </div>
-    <div class="col-md-7 col-md-offset-1">
-        <div class="row">
-            <div class="text-left game-title col-md-9">@Model.Title</div>
-            @if (User.Identity.IsAuthenticated && !Model.IsFavoritedByCurrentUser)
-            {
-                <div class="col-md-3">
-
-                    @using (Ajax.BeginForm(
-                    "AddToFavorites",
-                    "ManagePartyGames",
-                    new { gameId = Model.Id },
-                    new AjaxOptions
+            <div class="panel-heading panel-heading-add" id="comments-label">
+                <a href="#" class="pull-right text-info" id="show-hide-comments">Hide comments</a>
+                <br />
+            </div>
+            <div class="panel panel-body panel-comments-content" id="panel-comments-content">
+                <div id="all-comments">
+                    @foreach (var comment in @Model.Comments)
                     {
-                        HttpMethod = "POST",
-                        UpdateTargetId="game-details",
-                        InsertionMode=InsertionMode.ReplaceWith
-                    },
-                    null))
-                    {
-                        @Html.AntiForgeryToken()
-                        <input type="submit" class="btn-add-to-fav pull-right" />
+                        @Html.Partial("_CommentPartialView", comment)
                     }
                 </div>
-            }
-        </div>
-        <br />
-        <p class="description text-justify">@Model.Description</p>
-        <div>
-            @if (Model.AudioId != null)
-            {
-                <audio controls style="background-color: #000000; border-radius:5px;">
-                    <source src="@Url.Action("File", "AppFiles", new { id = Model.AudioId.Value })" />
-                </audio>
-            }
-
-        </div>
-        <br />
-        <h4>Category :: <span class="nice-green">@(Model.CategoryName == string.Empty ? "None" : Model.CategoryName)</span></h4>
-        <br />
-        <div class="row">
-            <div class="col-md-5">
-                <b>Suitable for :: </b><span>@Html.ShowPlayingPeopleInfo(Model)</span>
             </div>
-            <div class="col-md-7">
-                <span class="pull-right"> <b>Release Date :: </b> <span class="nice-green">@Model.CreatedOn.ToString("MMMM dd, yyyy")</span> </span>
-            </div>
-        </div>
-        <hr class="style-seven" />
-        <h4 class="pl5p pr5p text-justify">Necessary items :: <span><small class="nice-green">@(Model.NecessaryItems == null || Model.NecessaryItems == string.Empty ? "Not listed" : Model.NecessaryItems)</small></span></h4>
-        <hr class="style-seven-reversed" />
+        }
     </div>
-</div>
 
-<div id="panel-comments"></div>
-<br />
-<br />
-
-<div class="panel panel-party-games p0">
-    @if (@Model.Comments.Count() == 0)
+    @if (User.Identity.IsAuthenticated)
     {
-        <div class="panel-heading panel-heading-add text-warning" id="comments-label">
-            There are no comments about this game
-        </div>
-        <div class="panel panel-body panel-comments-content" id="panel-comments-content">
-            <div id="all-comments"></div>
-
-        </div>
+        @Html.Partial("~/Views/Comments/_AddComment.cshtml", new CommentViewModel(Model.Id))
     }
     else
     {
-        <div class="panel-heading panel-heading-add" id="comments-label">
-            <a href="#" class="pull-right text-info" id="show-hide-comments">Hide comments</a>
-            <br />
-        </div>
-        <div class="panel panel-body panel-comments-content" id="panel-comments-content">
-            <div id="all-comments">
-                @foreach (var comment in @Model.Comments)
-                {
-                    @Html.Partial("_CommentPartialView", comment)
-                }
-            </div>
-        </div>
+        @Html.ActionLink("Sign in", "Login", "Account", routeValues: new { area = string.Empty }, htmlAttributes: new { @class = "text-italic ml5 text-primary" })
+        <span class="text-success">to post a comment</span>
+        <br />
     }
-</div>
-
-@if (User.Identity.IsAuthenticated)
-{
-    @Html.Partial("~/Views/Comments/_AddComment.cshtml", new CommentViewModel(Model.Id))
-}
-else
-{
-    @Html.ActionLink("Sign in", "Login", "Account", routeValues: new { area = string.Empty }, htmlAttributes: new { @class = "text-italic ml5 text-primary" })
-    <span class="text-success">to post a comment</span>
     <br />
-}
-<br />
-@Html.Partial("_ManageButtonsPartial", Model)
+    @Html.Partial("_ManageButtonsPartial", Model)
+</div>

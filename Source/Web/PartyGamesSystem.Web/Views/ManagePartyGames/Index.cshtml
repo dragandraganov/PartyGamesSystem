@@ -4,12 +4,21 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="row">
+    <div class="col-md-6 pull-left">
+        @if (Request.QueryString["index"] == null || Request.QueryString["index"] == "ownGames")
+        {
+            @Html.ActionLink("Create new game", "Create", "ManagePartyGames", new { area = string.Empty }, new { @class = "btn btn-success" })
 
-@Html.Partial("_Search")
+        }
+    </div>
+    <div class="col-md-6">
+        @Html.Partial("_Search")
+    </div>
 
-<br />
+</div>
 
-<h3 class="text-center">
+<h1 class="text-center text-grassy">
     @if (Request.QueryString["index"]==null || Request.QueryString["index"] == "ownGames")
     {
         <span>My games</span>
@@ -18,7 +27,7 @@
     {
         <span>My favorite games</span>
     }
-</h3>
+</h1>
 
 @if (Model.Count() == 0)
 {
@@ -27,11 +36,6 @@
     </div>
 }
 
-@if (Request.QueryString["index"] == null || Request.QueryString["index"] == "ownGames")
-{
-    @Html.ActionLink("Create new game", "Create", "ManagePartyGames", new { area = string.Empty }, new { @class = "btn btn-success" })
-
-}
 
 <br />
 <br />
