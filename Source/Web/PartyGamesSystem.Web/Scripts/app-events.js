@@ -29,7 +29,7 @@
         $(this).parent().find('#rating-value').val($rating);
     })
     $(document).on('click', '.btn-clear-rating', function () {
-        $(this).parent().find('.rating-star').removeClass('filled selected');
+        $(this).parent().prev().find('.rating-star').removeClass('filled selected');
     })
 
 

@@ -5,8 +5,8 @@
 @using (Html.BeginForm("Index", null, FormMethod.Get))
 {
     <div class="pull-right">
-        <input type="text" name="query" value="@ViewBag.SearchQuery" placeholder="Search..." />
-        <input type="submit" id="btnSubmit" value="Search by title" />
+        <input class="rounded5" type="text" name="query" value="@ViewBag.SearchQuery" placeholder="Title..." />
+        <input class="rounded5" type="submit" id="btnSubmit" value="Search by title" />
     </div>
 }
 

@@ -2,108 +2,110 @@
 @using PartyGamesSystem.Web.ViewModels
 @model PartyGameViewModel
 
-<h3 class="text-center text-grassy"><b><em>@Model.Title.ToUpper()</em></b></h3>
-<br />
-<div class="row">
-    <div class="col-md-4 text-center">
-        @if (Model.ImageId != null)
-        {
-            <img src="@Url.Action("File", "AppFiles", new { id = Model.ImageId.Value })" alt="@Model.Title image" class="img-responsive form-control-sm" />
-        }
-        else
-        {
-            <span class="form-control form-control-sm">No image</span>
-        }
-        <br />
-        @if (User.Identity.IsAuthenticated)
-        {
-            if (Model.CurrentUserRating != null)
+<div class="bot-left">
+    <h3 class="text-center text-grassy"><b><em>@Model.Title.ToUpper()</em></b></h3>
+    <br />
+    <div class="row">
+        <div class="col-md-4 text-center">
+            @if (Model.ImageId != null)
             {
-                <div>
-                    <span class="va-top pr-5 golden">Rated</span>
-                    @for (int i = 1; i <= 5; i++)
-                    {
-                        if (i <= Model.CurrentUserRating.Value)
-                        {
-                            <label class="small-color-star filled va-middle"></label>
-                        }
-                        else
-                        {
-                            <label src="~/Content/Images/small-color_star.png" class="small-color-star va-middle"></label>
-                        }
-                    }
-                </div>
-                <br />
-                <div class="btn btn-common btn-xs showRating">
-                    Rate it again
-                </div>
+                <img src="@Url.Action("File", "AppFiles", new { id = Model.ImageId.Value })" alt="@Model.Title image" class="img-responsive form-control-sm" />
             }
             else
             {
-                <div class="btn btn-rating btn-xs showRating">
-                    Rate this game
-                </div>
+                <span class="form-control form-control-sm">No image</span>
             }
             <br />
-            <br />
-            using (Ajax.BeginForm("Vote", "Ratings", new { gameId = Model.Id, ratingId = Model.CurrentUserRating == null ? -1 : Model.CurrentUserRating.Id },
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (Model.CurrentUserRating != null)
+                {
+                    <div>
+                        <span class="va-top pr-5 golden">Rated</span>
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            if (i <= Model.CurrentUserRating.Value)
+                            {
+                                <label class="small-color-star filled va-middle"></label>
+                            }
+                            else
+                            {
+                                <label src="~/Content/Images/small-color_star.png" class="small-color-star va-middle"></label>
+                            }
+                        }
+                    </div>
+                    <br />
+                    <div class="btn btn-common btn-xs showRating">
+                        Rate it again
+                    </div>
+                }
+                else
+                {
+                    <div class="btn btn-rating btn-xs showRating">
+                        Rate this game
+                    </div>
+                }
+                <br />
+                <br />
+                using (Ajax.BeginForm("Vote", "Ratings", new { gameId = Model.Id, ratingId = Model.CurrentUserRating == null ? -1 : Model.CurrentUserRating.Id },
                             new AjaxOptions
                             {
                                 UpdateTargetId = "game-section-" + Model.Id
                             },
                             new { id = "form-" + Model.Id, @class = "rating-panel" }))
-            {
-                <div class="rating-area">
-                    <label class="rating-star"></label>
-                    <input type="radio" name="rating" value="1">
-                    <label class="rating-star"></label>
-                    <input type="radio" name="rating" value="2">
-                    <label class="rating-star"></label>
-                    <input type="radio" name="rating" value="3">
-                    <label class="rating-star"></label>
-                    <input type="radio" name="rating" value="4">
-                    <label class="rating-star"></label>
-                    <input type="radio" name="rating" value="5">
+                {
+                    <div class="rating-area">
+                        <label class="rating-star"></label>
+                        <input type="radio" name="rating" value="1">
+                        <label class="rating-star"></label>
+                        <input type="radio" name="rating" value="2">
+                        <label class="rating-star"></label>
+                        <input type="radio" name="rating" value="3">
+                        <label class="rating-star"></label>
+                        <input type="radio" name="rating" value="4">
+                        <label class="rating-star"></label>
+                        <input type="radio" name="rating" value="5">
+                    </div>
+            <div class="row">
+                <div class="btn btn-xs btn-default col-md-2 col-md-offset-2 btn-clear-rating">Clear</div>
+                <input type="submit" value="Rate" class="btn btn-xs btn-success col-md-2 col-md-offset-4 submit-rating" />
+            </div><br />
+                    <br />
+                }
+            }
+
+        </div>
+        <div class="col-md-7 col-md-offset-1">
+            <p class="description text-justify">@Html.ShowDescription(Model)</p>
+
+            <div><b>Category :: </b><span>@(Model.CategoryName == null ? "None" : Model.CategoryName)</span></div>
+            <div class="row">
+                <div class="col-md-7">
+                    <b>Suitable for :: </b><span>@Html.ShowPlayingPeopleInfo(Model)</span>
                 </div>
-                <div class="btn btn-xs btn-default pull-left btn-clear-rating">Clear</div>
-                <input type="submit" value="Rate" class="btn btn-xs btn-success pull-right submit-rating" />
-                <br />
-                <br />
-            }
-        }
-
-    </div>
-    <div class="col-md-7 col-md-offset-1">
-        <p class="description text-justify">@Html.ShowDescription(Model)</p>
-
-        <div><b>Category :: </b><span >@(Model.CategoryName == null ? "None" : Model.CategoryName)</span></div>
-        <div class="row">
-            <div class="col-md-7">
-                <b>Suitable for :: </b><span>@Html.ShowPlayingPeopleInfo(Model)</span>
+                <div class="col-md-5">
+                    <span> <b>Release Date :: </b> <span>@Model.CreatedOn.ToString("MMMM dd, yyyy")</span> </span>
+                </div>
             </div>
-            <div class="col-md-5">
-                <span> <b>Release Date :: </b> <span>@Model.CreatedOn.ToString("MMMM dd, yyyy")</span> </span>
+            <div class="row">
+                <div class="col-md-7">
+                    <b>Raiting :: </b>@Model.GetAverageRating()
+                </div>
+                <div class="col-md-5">
+                    <div> <b>Author :: </b> @Model.AuthorName</div>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-7">
-                <b>Raiting :: </b>@Model.GetAverageRating()
+            <hr class="style-seven" />
+            <h4 class="pl5p pr5p text-justify">Necessary items :: <span><small class="nice-green">@Html.ShowNecessaryItemsInIndexView(Model)</small></span></h4>
+            <hr class="style-seven-reversed" />
+            <div>
+                @if (!(@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "PartyGames" && @HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() == "Details"))
+                {
+                    <small>@Html.ActionLink("Comments :: " + @Model.Comments.Count(), "Details", "PartyGames", null, null, "panel-comments", new { area = string.Empty, id = Model.Id }, new { @class = "pull-right nice-green btn-see-comments" })</small>
+                }
             </div>
-            <div class="col-md-5">
-                <div> <b>Author :: </b> @Model.AuthorName</div>
-            </div>
-        </div>
-        <hr class="style-seven" />
-        <h4 class="pl5p pr5p text-justify">Necessary items :: <span><small class="nice-green">@Html.ShowNecessaryItemsInIndexView(Model)</small></span></h4>
-        <hr class="style-seven-reversed" />
-        <div>
-            @if (!(@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "PartyGames" && @HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() == "Details"))
-            {
-                <small>@Html.ActionLink("Comments :: " + @Model.Comments.Count(), "Details", "PartyGames", null, null, "panel-comments", new { area = string.Empty, id = Model.Id }, new { @class = "pull-right nice-green btn-see-comments" })</small>
-            }
         </div>
     </div>
+    @Html.Partial("_ManageButtonsPartial", Model)
+    <br />
 </div>
-
-@Html.Partial("_ManageButtonsPartial", Model)
-<br />

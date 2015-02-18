@@ -16,6 +16,7 @@ namespace PartyGamesSystem.Web.Controllers
     [Authorize]
     public class ManagePartyGamesController : BaseController
     {
+        private const string PathDefaultImage = "~/Content/Images/default-image.png";
         private readonly ISanitizer sanitizer;
 
         public ManagePartyGamesController(IPartyGamesSystemData data, ISanitizer sanitizer)
@@ -108,7 +109,7 @@ namespace PartyGamesSystem.Web.Controllers
                 {
                     using (var memory = new MemoryStream())
                     {
-                        string path = HttpContext.Server.MapPath("~/Content/Images/logo-gray.png");
+                        string path = HttpContext.Server.MapPath(PathDefaultImage);
 
                         using (var file = new FileStream(path, FileMode.Open))
                         {

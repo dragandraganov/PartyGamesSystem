@@ -5,10 +5,12 @@
     color: #000000;
 }
 
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    background-color:white;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -114,6 +116,10 @@ input[type=number]:invalid {
 
 .mb5 {
     margin-bottom: 5px !important;
+}
+
+.mb20 {
+    margin-bottom: 100px !important;
 }
 
 .pr0 {
@@ -333,17 +339,58 @@ html, body {
 
 .btn-add-to-fav {
     background: url("Images/add-to-fav.png") no-repeat;
-    padding-left:45px;
-    min-height:45px;
+    padding-left: 45px;
+    min-height: 45px;
     /*max-width: 45px;*/
     text-indent: -9999px;
-    border:none;
+    border: none;
 }
 
 .clearfix:after {
-   content: " "; /* Older browser do not support empty content */
-   visibility: hidden;
-   display: block;
-   height: 0;
-   clear: both;
+    content: " "; /* Older browser do not support empty content */
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+hr {
+    border-top: 1px solid #b0b0b0;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.bot-left {
+    position: relative;
+}
+
+    .bot-left:before, .bot-left:after {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        left: -3px;
+    }
+
+    .bot-left:before {
+        top: -3px;
+        width: 2px;
+        background-image: -webkit-gradient(linear, 0 100%, 0 0, from(#000), to(transparent));
+        background-image: -webkit-linear-gradient(transparent, #000);
+        background-image: -moz-linear-gradient(transparent, #000);
+        background-image: -o-linear-gradient(transparent, #000);
+    }
+
+    .bot-left:after {
+        right: -3px;
+        height: 2px;
+        background-image: -webkit-gradient(linear, 0 0, 100% 0, from(#000), to(transparent));
+        background-image: -webkit-linear-gradient(left, #000, transparent);
+        background-image: -moz-linear-gradient(left, #000, transparent);
+        background-image: -o-linear-gradient(left, #000, transparent);
+    }
+
+.rounded5 {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
 }
