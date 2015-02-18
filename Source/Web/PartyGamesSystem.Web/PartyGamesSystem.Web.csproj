@@ -235,6 +235,7 @@
     <Content Include="Content\Images\balloon_blue.png" />
     <Content Include="Content\Images\balloon-three-colors.png" />
     <Content Include="Content\Images\balloon_yellow.png" />
+    <Content Include="Content\Images\black_and_white.jpg" />
     <Content Include="Content\Images\color_star.png" />
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\default-image.png" />
