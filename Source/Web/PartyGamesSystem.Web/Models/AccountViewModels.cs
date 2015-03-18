@@ -49,7 +49,7 @@ namespace PartyGamesSystem.Web.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Username")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
